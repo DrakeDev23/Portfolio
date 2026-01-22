@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Drake Delos Reyes</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/simple-icons@v11/dist/simple-icons.min.js"></script>
+    <link rel="stylesheet" href="portfolio.css">
+</head>
+<body>
+    <div id="app">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-lg">
+            <div class="container">
+                <a class="navbar-brand" href="#home">Portfolio</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#home" @click="closeNav">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about" @click="closeNav">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#techstack" @click="closeNav">Tech Stack</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#projects" @click="closeNav">Projects</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#events" @click="closeNav">Events</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact" @click="closeNav">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <button class="btn btn-outline-secondary ms-2" @click="toggleDarkMode">
+                                <i :class="darkMode ? 'fas fa-sun' : 'fas fa-moon'"></i>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <section id="home" class="hero-section">
+            <div class="container text-center">
+                <img src="images/mypic.jpg" alt="Profile" class="profile-img mb-4">
+                <h1 class="display-3 fw-bold mb-4">
+                    <span class="gradient-text">Drake Delos Reyes</span>
+                </h1>
+                <p class="lead mb-5 typing-animation">Hi, i am passionate Software Engineer</p>
+                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                    <a href="#projects" class="btn btn-primary btn-lg">View Projects</a>
+                    <a href="#contact" class="btn btn-outline-primary btn-lg">Get In Touch</a>
+                </div>
+            </div>
+        </section>
+        <section id="techstack" class="py-5">
+            <div class="container">
+                <h2 class="text-center mb-5 display-4 fw-bold">Tech Stack</h2>
+                <div class="row g-4 justify-content-center">
+                    <div v-for="tech in techStack" :key="tech.name" class="col-6 col-sm-4 col-md-3 col-lg-2">
+                        <div class="text-center">
+                            <div class="tech-icon p-4 bg-white rounded shadow" :class="{ 'dark-mode': darkMode }">
+                                <i :class="tech.icon" :style="`color: ${tech.color}; font-size: 3rem;`"></i>
+                            </div>
+                            <p class="mt-2 fw-semibold">{{ tech.name }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="about" class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-4 display-5 fw-bold">About Me</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <p class="lead">
+                    Hi, I'm <strong>Drake Delos Reyes</strong>, a Bachelor of Science in Information Technology student.
+                    I enjoy building web applications, learning new technologies, and solving problems through code
+                </p>
+                <p>
+                    I'm passionate about frontend and backend development, and I love experimenting with
+                    JavaScript frameworks, APIs, and modern UI design
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+        <section id="projects" class="py-5 bg-light">
+            <div class="container">
+                <h2 class="text-center mb-5 display-4 fw-bold">Projects</h2>
+                <div class="position-relative">
+                    <div id="projectsCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div v-for="(projectGroup, index) in projectGroups" :key="index" 
+                                :class="['carousel-item', { active: index === 0 }]">
+                                <div class="row g-4">
+                                    <div v-for="project in projectGroup" :key="project.id" class="col-md-4">
+                                        <div class="card project-card h-100">
+                                            <img :src="project.image" class="card-img-top" :alt="project.title">
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ project.title }}</h5>
+                                                <p class="card-text">{{ project.description }}</p>
+                                                <div class="mb-3">
+                                                    <span v-for="tag in project.tags" :key="tag" 
+                                                        :class="['tag', `tag-${tag.color}`]">{{ tag.name }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#projectsCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#projectsCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="events" class="py-5">
+            <div class="container">
+                <h2 class="text-center mb-5 display-4 fw-bold">Events & Conferences</h2>
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div id="eventsCarousel" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+                                <button v-for="(event, index) in events" :key="index" 
+                                        type="button" data-bs-target="#eventsCarousel" 
+                                        :data-bs-slide-to="index" :class="{ active: index === 0 }"></button>
+                            </div>
+                            <div class="carousel-inner">
+                                <div v-for="(event, index) in events" :key="index" 
+                                    :class="['carousel-item', { active: index === 0 }]">
+                                    <img :src="event.image" class="d-block w-100" :alt="event.title" style="height: 400px; object-fit: cover;">
+                                    <div class="carousel-caption bg-dark bg-opacity-75 rounded">
+                                        <h3>{{ event.title }}</h3>
+                                        <p>{{ event.date }} • {{ event.location }}</p>
+                                        <p>{{ event.description }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#eventsCarousel" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon"></span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#eventsCarousel" data-bs-slide="next">
+                                <span class="carousel-control-next-icon"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="contact" class="py-5 bg-light">
+            <div class="container">
+                <h2 class="text-center mb-5 display-4 fw-bold">Get In Touch</h2>
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="card">
+                            <div class="card-body p-5">
+                                <form @submit.prevent="sendEmail">
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label">Name</label>
+                                            <input v-model="contactForm.name" type="text" class="form-control" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Email</label>
+                                            <input v-model="contactForm.email" type="email" class="form-control" required>
+                                        </div>
+                                        <div class="col-12">
+                                            <label class="form-label">Subject</label>
+                                            <input v-model="contactForm.subject" type="text" class="form-control" required>
+                                        </div>
+                                        <div class="col-12">
+                                            <label class="form-label">Message</label>
+                                            <textarea v-model="contactForm.message" class="form-control" rows="5" required></textarea>
+                                        </div>
+                                        <div class="col-12">
+                                            <button type="submit" class="btn btn-primary btn-lg w-100" :disabled="isSending">
+                                                <span v-if="!isSending">Send Message</span>
+                                                <div v-else class="spinner d-inline-block me-2"></div>
+                                                <span v-if="isSending">Sending...</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div :class="['success-message', 'alert', 'alert-success', { show: showSuccess }]">
+                                    <i class="fas fa-check-circle me-2"></i>
+                                    Message sent successfully! I'll get back to you soon.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center mt-4">
+                            <a href="https://github.com/DrakeDev23" class="social-link text-dark me-3" target="_blank">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://www.facebook.com/stephen.mart.98" class="social-link text-dark me-3" target="_blank">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                            <a href="https://www.instagram.com/0_dr4k3/" class="social-link text-dark" target="_blank">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer class="bg-dark text-white py-4">
+            <div class="container text-center">
+                <p>&copy; 2026 Drake Delos Reyes Portfolio. All rights reserved</p>
+            </div>
+        </footer>
+    </div>
+    <script src="portfolio.js"></script>
+</body>
+</html>
