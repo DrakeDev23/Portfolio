@@ -11,7 +11,6 @@ export default function Navbar() {
     const onScroll = () => {
       setScrolled(window.scrollY > 48)
 
-      // Detect active section
       for (const link of [...NAV_LINKS].reverse()) {
         const el = document.getElementById(link.toLowerCase())
         if (el) {
@@ -36,14 +35,12 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
           ? 'bg-[#090514]/90 backdrop-blur-xl border-b border-[rgba(122,51,255,0.15)]'
           : 'bg-transparent'
-      }`}
+        }`}
     >
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        {/* Logo */}
         <button
           onClick={() => scrollTo('home')}
           className="flex items-center gap-2 group"
@@ -65,17 +62,15 @@ export default function Navbar() {
           </span>
         </button>
 
-        {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-1" role="navigation">
           {NAV_LINKS.map((link) => (
             <button
               key={link}
               onClick={() => scrollTo(link)}
-              className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                activeSection === link
+              className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${activeSection === link
                   ? 'text-white'
                   : 'text-gray-400 hover:text-gray-200 hover:bg-white/5'
-              }`}
+                }`}
             >
               {activeSection === link && (
                 <span
@@ -91,7 +86,6 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* CTA — desktop */}
         <button
           onClick={() => scrollTo('contact')}
           className="hidden md:flex btn-primary text-xs py-2 px-4"
@@ -99,7 +93,6 @@ export default function Navbar() {
           Hire me
         </button>
 
-        {/* Mobile hamburger */}
         <button
           className="md:hidden p-2 text-gray-400 hover:text-white transition-colors"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -109,7 +102,6 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile menu */}
       {menuOpen && (
         <div
           className="md:hidden border-t"
@@ -124,11 +116,10 @@ export default function Navbar() {
               <button
                 key={link}
                 onClick={() => scrollTo(link)}
-                className={`text-left px-4 py-3 rounded-lg text-sm font-medium transition-all ${
-                  activeSection === link
+                className={`text-left px-4 py-3 rounded-lg text-sm font-medium transition-all ${activeSection === link
                     ? 'text-white bg-[rgba(122,51,255,0.12)]'
                     : 'text-gray-400 hover:text-white hover:bg-white/5'
-                }`}
+                  }`}
               >
                 {link}
               </button>
