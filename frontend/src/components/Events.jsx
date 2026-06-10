@@ -24,7 +24,7 @@ export default function Events() {
       />
 
       <div className="max-w-6xl mx-auto px-6 relative z-10">
-        <SectionHeader eyebrow="Conference Journey" title="Events & Milestones" />
+        <SectionHeader eyebrow="Conference Journey" title="Events & Conferences" />
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {EVENTS.map((ev, idx) => {
