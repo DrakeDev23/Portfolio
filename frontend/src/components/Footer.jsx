@@ -16,7 +16,6 @@ export default function Footer() {
       }}
     >
       <div className="max-w-6xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-        {/* Logo */}
         <div className="flex items-center gap-2">
           <div
             className="w-7 h-7 rounded-lg flex items-center justify-center"
@@ -37,12 +36,10 @@ export default function Footer() {
           </span>
         </div>
 
-        {/* Copyright */}
         <p className="text-gray-600 text-sm">
           &copy; {new Date().getFullYear()} Drake. All rights reserved.
         </p>
 
-        {/* Social */}
         <div className="flex items-center gap-1">
           {SOCIAL_LINKS.map(({ icon: Icon, label, href }) => (
             <a
