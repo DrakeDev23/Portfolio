@@ -10,8 +10,8 @@ const HOBBIES = [
   },
   {
     icon: <Code2 size={22} strokeWidth={1.5} />,
-    label: 'Coding',
-    desc: 'Building things that didn\'t exist before. Side projects keep skills sharp.',
+    label: 'Solving Math',
+    desc: 'Solving math problems is like debugging code it requires logic, pattern recognition, and persistence.',
   },
   {
     icon: <BookOpen size={22} strokeWidth={1.5} />,
@@ -20,7 +20,7 @@ const HOBBIES = [
   },
   {
     icon: <Gamepad2 size={22} strokeWidth={1.5} />,
-    label: 'Sandbox Gaming',
+    label: 'Cycling',
     desc: 'Open-world problem solving. Unofficial training for systems thinking.',
   },
 ]
@@ -28,17 +28,13 @@ const HOBBIES = [
 const FOCUS_BARS = [
   { label: 'Full-Stack Development', pct: 85 },
   { label: 'Penetration Testing', pct: 70 },
-  { label: 'Network Security', pct: 65 },
-  { label: 'Database Engineering', pct: 78 },
 ]
 
 const COURSES = [
-  'Web Systems',
-  'Network Security',
-  'Database Design',
-  'Software Engineering',
-  'Operating Systems',
-  'Data Structures',
+  'full-Stack developer',
+  'CTFs Player',
+  'Programmer',
+  'Mathematics'
 ]
 
 export default function About() {
