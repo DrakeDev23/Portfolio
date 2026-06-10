@@ -48,7 +48,6 @@ export default function About() {
       className="py-28 relative"
       style={{ backgroundColor: '#090514' }}
     >
-      {/* Subtle divider glow */}
       <div
         className="absolute top-0 left-0 right-0 h-px"
         style={{ background: 'linear-gradient(90deg, transparent, rgba(122,51,255,0.3), transparent)' }}
@@ -58,9 +57,7 @@ export default function About() {
         <SectionHeader eyebrow="Who I Am" title="About Me" />
 
         <div className="grid md:grid-cols-2 gap-10 items-start">
-          {/* Left column */}
           <div className="space-y-6">
-            {/* Education card */}
             <GlassCard>
               <div className="flex items-start gap-4">
                 <div
@@ -96,7 +93,6 @@ export default function About() {
               </div>
             </GlassCard>
 
-            {/* Focus bars */}
             <GlassCard>
               <p className="section-eyebrow mb-5">Focus Areas</p>
               <div className="space-y-4">
@@ -127,7 +123,6 @@ export default function About() {
             </GlassCard>
           </div>
 
-          {/* Right column — hobbies */}
           <div>
             <p className="section-eyebrow mb-5">When I&apos;m Not Coding</p>
             <div className="grid grid-cols-2 gap-4">
