@@ -2,7 +2,6 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import { MapPin, Calendar, ChevronLeft, ChevronRight } from 'lucide-react'
 import SectionHeader from './SectionHeader'
 
-// ─── Image imports ────────────────────────────────────────────────────────────
 import aiImg from '../assets/images/events/ai.jpeg'
 import capstoneImg from '../assets/images/events/capstone.jpeg'
 import ctfImg from '../assets/images/events/ctf.jpeg'
