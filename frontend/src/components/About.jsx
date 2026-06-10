@@ -21,7 +21,7 @@ const HOBBIES = [
   {
     icon: <Gamepad2 size={22} strokeWidth={1.5} />,
     label: 'Cycling',
-    desc: 'Open-world problem solving. Unofficial training for systems thinking.',
+    desc: 'Cycling is my meditation. It clears my head and helps me approach problems with a fresh perspective.',
   },
 ]
 
