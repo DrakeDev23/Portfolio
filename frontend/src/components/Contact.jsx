@@ -40,12 +40,11 @@ function FormInput({ as: Tag = 'input', ...props }) {
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
-  const [status, setStatus] = useState('idle') // idle | sending | sent
+  const [status, setStatus] = useState('idle')
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     setStatus('sending')
-    // Replace with real API call: await fetch('/api/contact', { method: 'POST', body: JSON.stringify(form) })
     await new Promise((r) => setTimeout(r, 1400))
     setStatus('sent')
     setForm({ name: '', email: '', subject: '', message: '' })
@@ -73,7 +72,6 @@ export default function Contact() {
         <SectionHeader eyebrow="Reach Out" title="Get in Touch" />
 
         <div className="grid md:grid-cols-2 gap-10">
-          {/* Left — info */}
           <div className="space-y-6">
             <p className="text-gray-400 leading-relaxed">
               Whether you have a project idea, a CTF team invitation, or just want to connect
@@ -102,7 +100,6 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Right — form */}
           <GlassCard>
             {status === 'sent' ? (
               <div className="flex flex-col items-center justify-center py-14 text-center gap-4">
