@@ -27,16 +27,16 @@ function ChatMessage({ msg }) {
         style={
           isUser
             ? {
-                background: 'linear-gradient(135deg, #7A33FF, #b347ff)',
-                color: 'white',
-                borderBottomRightRadius: '4px',
-              }
+              background: 'linear-gradient(135deg, #7A33FF, #b347ff)',
+              color: 'white',
+              borderBottomRightRadius: '4px',
+            }
             : {
-                background: 'rgba(255,255,255,0.05)',
-                border: '1px solid rgba(122,51,255,0.15)',
-                color: '#d1d5db',
-                borderBottomLeftRadius: '4px',
-              }
+              background: 'rgba(255,255,255,0.05)',
+              border: '1px solid rgba(122,51,255,0.15)',
+              color: '#d1d5db',
+              borderBottomLeftRadius: '4px',
+            }
         }
       >
         {msg.text}
@@ -113,7 +113,6 @@ export default function Chatbot() {
 
   return (
     <>
-      {/* Chat window */}
       {open && (
         <div
           className="fixed bottom-24 right-6 w-80 flex flex-col overflow-hidden z-50 rounded-2xl"
@@ -126,7 +125,6 @@ export default function Chatbot() {
           role="dialog"
           aria-label="AI Chat Assistant"
         >
-          {/* Header */}
           <div
             className="flex items-center gap-3 px-4 py-3 flex-shrink-0"
             style={{
@@ -159,7 +157,6 @@ export default function Chatbot() {
             </button>
           </div>
 
-          {/* Messages */}
           <div
             className="flex-1 overflow-y-auto p-4 space-y-4"
             style={{ overscrollBehavior: 'contain' }}
@@ -171,7 +168,6 @@ export default function Chatbot() {
             <div ref={bottomRef} />
           </div>
 
-          {/* Input */}
           <div
             className="p-3 flex gap-2 flex-shrink-0"
             style={{ borderTop: '1px solid rgba(122,51,255,0.15)' }}
@@ -221,7 +217,6 @@ export default function Chatbot() {
         </div>
       )}
 
-      {/* FAB */}
       <button
         onClick={() => setOpen((o) => !o)}
         aria-label={open ? 'Close AI chat' : 'Open AI chat'}
@@ -241,7 +236,6 @@ export default function Chatbot() {
       >
         {open ? <X size={20} /> : <MessageSquare size={20} />}
 
-        {/* Unread dot */}
         {!open && (
           <span
             className="absolute -top-1 -right-0.5 w-3.5 h-3.5 rounded-full bg-green-400 border-2"
