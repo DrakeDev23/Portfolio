@@ -51,8 +51,8 @@ const PROJECTS = [
   {
     id: 'publika',
     title: 'Publika',
-    subtitle: 'Publishing Platform',
-    desc: 'A lightweight publishing platform for articles and announcements, built with pure frontend technologies for maximum compatibility.',
+    subtitle: 'E-Service',
+    desc: 'this project was made for school contest and got 1st runner up',
     tags: ['HTML', 'CSS', 'JavaScript'],
     color: '#10b981',
     image: publikaImg,
