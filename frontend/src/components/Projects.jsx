@@ -2,7 +2,6 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import SectionHeader from './SectionHeader'
 
-// ─── Image imports (src/assets path) ─────────────────────────────────────────
 import awsImg from '../assets/images/projects/aws.jpeg'
 import beautyImg from '../assets/images/projects/beauty.jpeg'
 import meImg from '../assets/images/projects/me.jpeg'
@@ -12,7 +11,6 @@ import realestateImg from '../assets/images/projects/realestate.jpeg'
 import smpImg from '../assets/images/projects/smp.jpeg'
 import trustpulseImg from '../assets/images/projects/trustpulse.jpeg'
 
-// ─── Project Data (inline) ────────────────────────────────────────────────────
 const PROJECTS = [
   {
     id: 'aws',
@@ -149,7 +147,6 @@ export default function Projects() {
             minHeight: '340px',
           }}
         >
-          {/* Decorative glows */}
           <div
             className="absolute top-0 right-0 w-72 h-72 rounded-full pointer-events-none"
             style={{
@@ -165,9 +162,7 @@ export default function Projects() {
             }}
           />
 
-          {/* Main card content */}
           <div className="relative z-10 p-8 md:p-12 flex flex-col md:flex-row gap-10 items-start">
-            {/* Project image */}
             <div
               className="w-full md:w-80 flex-shrink-0 rounded-xl overflow-hidden"
               style={{
@@ -204,7 +199,6 @@ export default function Projects() {
               />
             </div>
 
-            {/* Project info */}
             <div className="flex-1 space-y-4">
               <div>
                 <p
@@ -235,7 +229,6 @@ export default function Projects() {
             </div>
           </div>
 
-          {/* Dot indicators + nav arrows */}
           <div className="relative z-10 px-8 md:px-12 pb-8 flex items-center justify-between">
             <div className="flex items-center gap-2">
               {PROJECTS.map((_, i) => (
@@ -286,7 +279,6 @@ export default function Projects() {
           </div>
         </div>
 
-        {/* Thumbnail strip */}
         <div className="grid grid-cols-4 sm:grid-cols-8 gap-3">
           {PROJECTS.map((p, i) => (
             <button
