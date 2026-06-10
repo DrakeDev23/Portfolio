@@ -49,7 +49,6 @@ export default function Hero() {
       className="relative min-h-screen flex items-center overflow-hidden"
       style={{ backgroundColor: '#090514' }}
     >
-      {/* Ambient background blobs */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div
           className="absolute w-[600px] h-[600px] rounded-full"
@@ -67,7 +66,6 @@ export default function Hero() {
             background: 'radial-gradient(circle, rgba(180,51,255,0.08) 0%, transparent 70%)',
           }}
         />
-        {/* Subtle grid */}
         <div
           className="absolute inset-0 opacity-40"
           style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%237A33FF' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")" }}
@@ -75,9 +73,7 @@ export default function Hero() {
       </div>
 
       <div className="max-w-6xl mx-auto px-6 pt-24 pb-16 grid md:grid-cols-2 gap-16 items-center relative z-10 w-full">
-        {/* Left — text */}
         <div className="space-y-8">
-          {/* Badge */}
           <div
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium"
             style={{
@@ -93,7 +89,6 @@ export default function Hero() {
             Open to opportunities
           </div>
 
-          {/* Headline */}
           <div>
             <p className="text-gray-400 text-lg mb-2 font-light">Hello, I&apos;m</p>
             <h1
@@ -109,7 +104,6 @@ export default function Hero() {
               Drake
             </h1>
 
-            {/* Typewriter */}
             <div className="flex items-center gap-0 h-9">
               <span
                 className="text-xl md:text-2xl font-semibold"
@@ -131,7 +125,6 @@ export default function Hero() {
             experiences with hardened backend systems — and break things professionally in CTFs.
           </p>
 
-          {/* Stat chips */}
           <div className="flex flex-wrap gap-4">
             {[
               { icon: <Code2 size={14} />, label: '19+ technologies' },
@@ -152,7 +145,6 @@ export default function Hero() {
             ))}
           </div>
 
-          {/* CTA buttons */}
           <div className="flex flex-wrap gap-4">
             <a href="/cv.pdf" download className="btn-primary">
               <Download size={16} />
@@ -168,10 +160,8 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Right — avatar */}
         <div className="flex justify-center items-center">
           <div className="relative">
-            {/* Outer glow ring */}
             <div
               className="absolute inset-[-2px] rounded-full"
               style={{
@@ -183,7 +173,6 @@ export default function Hero() {
               }}
             />
 
-            {/* Orbit ring */}
             <div
               className="absolute rounded-full border border-[rgba(122,51,255,0.2)] animate-spin-slow"
               style={{
@@ -199,7 +188,6 @@ export default function Hero() {
               />
             </div>
 
-            {/* Second orbit ring (counter) */}
             <div
               className="absolute rounded-full border border-[rgba(155,109,255,0.1)]"
               style={{
@@ -216,7 +204,6 @@ export default function Hero() {
               />
             </div>
 
-            {/* Avatar circle */}
             <div
               className="relative w-60 h-60 md:w-72 md:h-72 rounded-full overflow-hidden"
               style={{
@@ -229,7 +216,6 @@ export default function Hero() {
                 alt="Drake — Web Developer & Cybersecurity Practitioner"
                 className="w-full h-full object-cover"
                 onError={(e) => {
-                  // Fallback placeholder when image not found
                   e.target.style.display = 'none'
                   e.target.parentNode.style.background = 'linear-gradient(135deg, #130e2a, #1e1045)'
                   const placeholder = document.createElement('div')
@@ -246,7 +232,6 @@ export default function Hero() {
               />
             </div>
 
-            {/* Floating badge */}
             <div
               className="absolute -bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap"
               style={{
@@ -262,7 +247,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll hint */}
       <button
         onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-gray-600 hover:text-gray-400 transition-colors"
