@@ -3,10 +3,10 @@ import { Download, ArrowRight, Shield, Code2, ChevronDown } from 'lucide-react'
 import avatarImg from '../assets/images/avatar.jpg'
 
 const ROLES = [
-  'Web Developer',
-  'Cybersecurity Practitioner',
-  'CTF Competitor',
-  'Full-Stack Engineer',
+  'aspiring Cybersecurity Engineer',
+  'Programmer',
+  'CTF Player',
+  'Full-Stack Developer',
 ]
 
 export default function Hero() {
@@ -122,7 +122,7 @@ export default function Hero() {
 
           <p className="text-gray-400 leading-relaxed max-w-md text-base">
             BSIT student building secure, performant software. I bridge clean frontend
-            experiences with hardened backend systems — and break things professionally in CTFs.
+            experiences with hardened backend systems and break things professionally in CTFs.
           </p>
 
           <div className="flex flex-wrap gap-4">
