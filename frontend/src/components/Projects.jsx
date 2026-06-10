@@ -59,8 +59,8 @@ const PROJECTS = [
   },
   {
     id: 'realestate',
-    title: 'Real Estate',
-    subtitle: 'Property Listings',
+    title: 'Haven',
+    subtitle: 'Capstone Project',
     desc: 'A property listing and management web app with search, filters, and a server-side backend powered by ASP.NET and SQLite.',
     tags: ['HTML', 'CSS', 'ASP.NET', 'JavaScript', 'SQLite'],
     color: '#3b82f6',
