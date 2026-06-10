@@ -46,7 +46,6 @@ export default function Events() {
                   e.currentTarget.style.boxShadow = 'none'
                 }}
               >
-                {/* Photo area */}
                 <div
                   className="relative w-full overflow-hidden"
                   style={{ aspectRatio: '16/9', background: `linear-gradient(135deg, ${accent}18, #0a0718)` }}
@@ -77,7 +76,6 @@ export default function Events() {
                     }}
                   />
 
-                  {/* Role badge overlay */}
                   <div
                     className="absolute top-3 right-3 px-2.5 py-1 rounded-full text-xs font-semibold"
                     style={{
@@ -91,7 +89,6 @@ export default function Events() {
                   </div>
                 </div>
 
-                {/* Card body */}
                 <div className="p-5">
                   <h3 className="text-white font-bold text-sm mb-3 leading-snug">
                     {ev.name}
