@@ -55,7 +55,6 @@ export default function Projects() {
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         <SectionHeader eyebrow="My Work" title="Featured Projects" />
 
-        {/* Main carousel card */}
         <div
           key={proj.id}
           className="relative rounded-2xl overflow-hidden mb-4"
@@ -65,7 +64,6 @@ export default function Projects() {
             minHeight: '340px',
           }}
         >
-          {/* Decorative shapes */}
           <div
             className="absolute top-0 right-0 w-72 h-72 rounded-full pointer-events-none"
             style={{ background: `radial-gradient(circle, ${proj.color}12 0%, transparent 70%)`, transform: 'translate(30%, -30%)' }}
@@ -76,7 +74,6 @@ export default function Projects() {
           />
 
           <div className="relative z-10 p-8 md:p-12 flex flex-col md:flex-row gap-10 items-start">
-            {/* Project image placeholder */}
             <div
               className="w-full md:w-80 flex-shrink-0 rounded-xl overflow-hidden"
               style={{
@@ -113,7 +110,6 @@ export default function Projects() {
               />
             </div>
 
-            {/* Text content */}
             <div className="flex-1 space-y-4">
               <div>
                 <p
@@ -165,9 +161,7 @@ export default function Projects() {
             </div>
           </div>
 
-          {/* Navigation controls inside card */}
           <div className="relative z-10 px-8 md:px-12 pb-8 flex items-center justify-between">
-            {/* Dot indicators */}
             <div className="flex items-center gap-2">
               {PROJECTS.map((_, i) => (
                 <button
@@ -184,7 +178,6 @@ export default function Projects() {
               ))}
             </div>
 
-            {/* Arrow buttons */}
             <div className="flex gap-2">
               <button
                 onClick={() => go(-1)}
@@ -218,7 +211,6 @@ export default function Projects() {
           </div>
         </div>
 
-        {/* Thumbnail strip */}
         <div className="grid grid-cols-5 gap-3">
           {PROJECTS.map((p, i) => (
             <button
