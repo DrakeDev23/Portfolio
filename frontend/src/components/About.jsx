@@ -6,7 +6,7 @@ const HOBBIES = [
   {
     icon: <Dumbbell size={22} strokeWidth={1.5} />,
     label: 'Boxing',
-    desc: 'Discipline and focus — the same principles I apply to debugging hard bugs.',
+    desc: 'Discipline and focus the same principles I apply to debugging hard bugs.',
   },
   {
     icon: <Code2 size={22} strokeWidth={1.5} />,
