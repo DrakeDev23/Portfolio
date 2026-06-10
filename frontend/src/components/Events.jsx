@@ -11,13 +11,12 @@ import launchImg from '../assets/images/events/launch.jpeg'
 import networksecImg from '../assets/images/events/networksec.jpeg'
 import webdevImg from '../assets/images/events/webdev.jpeg'
 
-// ─── Event Data ───────────────────────────────────────────────────────────────
 const EVENTS = [
   {
     id: 'ctf',
     name: 'Capture The Flag — IT Days',
     location: 'Cebu Eastern College, Cebu City',
-    date: 'January 1, 2025',           // ← change me
+    date: 'January 1, 2025',
     role: 'Champion',
     achievement: 'champion',
     desc: 'Competed in a cybersecurity Capture The Flag challenge during CEC IT Days, clinching 1st place by solving challenges across cryptography, web exploitation, and forensics.',
@@ -27,7 +26,7 @@ const EVENTS = [
     id: 'webdev',
     name: 'Web Dev Design — IT Days',
     location: 'Cebu Eastern College, Cebu City',
-    date: 'January 1, 2025',           // ← change me
+    date: 'January 1, 2025',
     role: '1st Runner-Up',
     achievement: 'runner-up',
     desc: 'Collaborated with my team to design and build a web application during CEC IT Days, earning 1st Runner-Up for our UI/UX design and overall execution.',
@@ -37,7 +36,7 @@ const EVENTS = [
     id: 'ai',
     name: 'Gemini Study Jam',
     location: 'Cebu Eastern College, Cebu City',
-    date: 'January 1, 2025',           // ← change me
+    date: 'January 1, 2025',
     role: 'Participant',
     achievement: null,
     desc: 'Attended the Google Gemini Study Jam, a hands-on workshop exploring Gemini AI capabilities, prompt engineering, and practical AI integrations for developers.',
@@ -47,7 +46,7 @@ const EVENTS = [
     id: 'capstone',
     name: 'Capstone Presentation',
     location: 'Cebu Eastern College, Cebu City',
-    date: 'January 1, 2025',           // ← change me
+    date: 'January 1, 2025',
     role: 'Presenter',
     achievement: null,
     desc: 'Presented our capstone project to a panel of faculty and industry professionals, demonstrating technical implementation, research findings, and real-world impact.',
@@ -57,7 +56,7 @@ const EVENTS = [
     id: 'ict',
     name: 'ICT Congress',
     location: 'Cebu Eastern College, Cebu City',
-    date: 'January 1, 2025',           // ← change me
+    date: 'January 1, 2025',
     role: 'Delegate',
     achievement: null,
     desc: 'Participated in the ICT Congress, engaging with talks and workshops on emerging technologies, digital transformation, and the future of the tech industry in the region.',
@@ -67,7 +66,7 @@ const EVENTS = [
     id: 'launch',
     name: 'Launch 2025',
     location: 'Cebu Eastern College, Cebu City',
-    date: 'January 1, 2025',           // ← change me
+    date: 'January 1, 2025',
     role: 'Attendee',
     achievement: null,
     desc: "Attended Launch 2025, a flagship tech event celebrating innovation, student projects, and the kickoff of the academic year's technology initiatives.",
@@ -77,7 +76,7 @@ const EVENTS = [
     id: 'networksec',
     name: 'Network Security Seminar',
     location: 'Cebu Eastern College, Cebu City',
-    date: 'January 1, 2025',           // ← change me
+    date: 'January 1, 2025',
     role: 'Attendee',
     achievement: null,
     desc: 'Joined a network security seminar covering modern threat landscapes, ethical hacking fundamentals, and best practices for securing systems and infrastructure.',
@@ -90,7 +89,7 @@ const ACCENT_COLORS = [
   '#8833ff', '#7733ee', '#b347ff', '#7A33FF',
 ]
 
-const VISIBLE = 3   // cards visible at once
+const VISIBLE = 3
 const INTERVAL = 3000
 
 export default function Events() {
@@ -120,7 +119,6 @@ export default function Events() {
       if (next > maxOffset) return 0
       return next
     })
-    // restart timer after manual nav
     if (!paused) startTimer()
   }
 
@@ -142,14 +140,12 @@ export default function Events() {
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         <SectionHeader eyebrow="Conference Journey" title="Events & Conferences" />
 
-        {/* Carousel wrapper */}
         <div
           className="relative"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
 
-          {/* Prev button */}
           <button
             onClick={() => go(-1)}
             aria-label="Previous event"
@@ -165,7 +161,6 @@ export default function Events() {
             <ChevronLeft size={18} />
           </button>
 
-          {/* Cards viewport — overflow hidden */}
           <div className="overflow-hidden">
             <div
               className="flex gap-6 transition-transform duration-500 ease-in-out"
@@ -220,7 +215,6 @@ export default function Events() {
                           : 'none'
                     }}
                   >
-                    {/* Image */}
                     <div
                       className="relative w-full overflow-hidden"
                       style={{ aspectRatio: '16/9', background: `linear-gradient(135deg, ${accent}18, #0a0718)` }}
@@ -250,7 +244,6 @@ export default function Events() {
                           e.target.parentNode.appendChild(fb)
                         }}
                       />
-                      {/* Role badge */}
                       <div
                         className="absolute top-3 right-3 px-2.5 py-1 rounded-full text-xs font-semibold"
                         style={{
@@ -272,7 +265,6 @@ export default function Events() {
                       </div>
                     </div>
 
-                    {/* Content */}
                     <div className="p-5 flex flex-col flex-1">
                       <h3 className="text-white font-bold text-sm mb-2 leading-snug">
                         {ev.name}
@@ -297,7 +289,6 @@ export default function Events() {
             </div>
           </div>
 
-          {/* Next button */}
           <button
             onClick={() => go(1)}
             aria-label="Next event"
@@ -314,7 +305,6 @@ export default function Events() {
           </button>
         </div>
 
-        {/* Dot indicators */}
         <div className="flex items-center justify-center gap-2 mt-6">
           {Array.from({ length: maxOffset + 1 }).map((_, i) => (
             <button
