@@ -13,11 +13,11 @@ import trustpulseImg from '../assets/images/projects/trustpulse.jpeg'
 
 const PROJECTS = [
   {
-    id: 'aws',
-    title: 'AWS Project',
-    subtitle: 'Cloud & Frontend',
-    desc: 'My role in this project was focused on the frontend — building responsive, accessible UI components and integrating them with cloud-hosted services on AWS.',
-    tags: ['React', 'Tailwind CSS', 'AWS'],
+    id: 'AWSCC - Flurr',
+    title: 'AWS Skill Builder',
+    subtitle: 'Org Project',
+    desc: 'My role in this project was focused on the frontend building responsive, accessible UI components',
+    tags: ['React js', 'Tailwind CSS'],
     color: '#FF9900',
     image: awsImg,
   },
