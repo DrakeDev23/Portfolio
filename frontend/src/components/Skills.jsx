@@ -22,7 +22,6 @@ export default function Skills() {
         style={{ background: 'linear-gradient(90deg, transparent, rgba(122,51,255,0.3), transparent)' }}
       />
 
-      {/* Side ambient glow */}
       <div
         className="absolute left-0 top-1/2 -translate-y-1/2 w-72 h-72 rounded-full pointer-events-none"
         style={{ background: 'radial-gradient(circle, rgba(122,51,255,0.08) 0%, transparent 70%)' }}
@@ -31,7 +30,6 @@ export default function Skills() {
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         <SectionHeader eyebrow="Tech Stack" title="Skills & Tools" />
 
-        {/* Tab switcher */}
         <div className="flex justify-center mb-10">
           <div
             className="flex p-1 rounded-xl gap-1"
@@ -45,10 +43,10 @@ export default function Skills() {
                 style={
                   activeTab === key
                     ? {
-                        background: 'linear-gradient(135deg, #7A33FF, #b347ff)',
-                        color: 'white',
-                        boxShadow: '0 4px 20px rgba(122,51,255,0.3)',
-                      }
+                      background: 'linear-gradient(135deg, #7A33FF, #b347ff)',
+                      color: 'white',
+                      boxShadow: '0 4px 20px rgba(122,51,255,0.3)',
+                    }
                     : { color: '#9ca3af' }
                 }
               >
@@ -59,7 +57,6 @@ export default function Skills() {
           </div>
         </div>
 
-        {/* Badges */}
         <div className="flex flex-wrap justify-center gap-3 max-w-3xl mx-auto">
           {SKILLS[activeTab].map((skill) => (
             <span key={skill} className="skill-badge">
@@ -68,7 +65,6 @@ export default function Skills() {
           ))}
         </div>
 
-        {/* Count label */}
         <p className="text-center mt-8 text-gray-600 text-sm">
           {SKILLS[activeTab].length} {activeTab === 'Development' ? 'technologies' : 'tools'} in stack
         </p>
