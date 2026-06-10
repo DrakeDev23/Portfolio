@@ -1,7 +1,92 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { ChevronLeft, ChevronRight, ExternalLink, Github } from 'lucide-react'
-import { PROJECTS } from '../constants/data'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import SectionHeader from './SectionHeader'
+
+// ─── Image imports (src/assets path) ─────────────────────────────────────────
+import awsImg from '../assets/images/projects/aws.jpeg'
+import beautyImg from '../assets/images/projects/beauty.jpeg'
+import meImg from '../assets/images/projects/me.jpeg'
+import museoImg from '../assets/images/projects/museo.jpeg'
+import publikaImg from '../assets/images/projects/publika.jpeg'
+import realestateImg from '../assets/images/projects/realestate.jpeg'
+import smpImg from '../assets/images/projects/smp.jpeg'
+import trustpulseImg from '../assets/images/projects/trustpulse.jpeg'
+
+// ─── Project Data (inline) ────────────────────────────────────────────────────
+const PROJECTS = [
+  {
+    id: 'aws',
+    title: 'AWS Project',
+    subtitle: 'Cloud & Frontend',
+    desc: 'My role in this project was focused on the frontend — building responsive, accessible UI components and integrating them with cloud-hosted services on AWS.',
+    tags: ['React', 'Tailwind CSS', 'AWS'],
+    color: '#FF9900',
+    image: awsImg,
+  },
+  {
+    id: 'beauty',
+    title: 'Beauty Platform',
+    subtitle: 'E-Commerce / Beauty',
+    desc: 'A full-featured beauty e-commerce platform with product listings, cart management, and a custom CMS built on a PHP backend.',
+    tags: ['PHP', 'TailwindCSS', 'JavaScript', 'MySQL', 'HTML'],
+    color: '#ec4899',
+    image: beautyImg,
+  },
+  {
+    id: 'me',
+    title: 'My Portfolio',
+    subtitle: 'Personal Site',
+    desc: 'My personal developer portfolio showcasing projects, skills, and experience. Built with a modern React frontend and a FastAPI backend.',
+    tags: ['React', 'FastAPI'],
+    color: '#7a33ff',
+    image: meImg,
+  },
+  {
+    id: 'museo',
+    title: 'Museo',
+    subtitle: 'Museum / Gallery',
+    desc: 'An interactive museum guide web app presenting exhibits and collections with clean, accessible design using vanilla web technologies.',
+    tags: ['HTML', 'CSS', 'JavaScript'],
+    color: '#f59e0b',
+    image: museoImg,
+  },
+  {
+    id: 'publika',
+    title: 'Publika',
+    subtitle: 'Publishing Platform',
+    desc: 'A lightweight publishing platform for articles and announcements, built with pure frontend technologies for maximum compatibility.',
+    tags: ['HTML', 'CSS', 'JavaScript'],
+    color: '#10b981',
+    image: publikaImg,
+  },
+  {
+    id: 'realestate',
+    title: 'Real Estate',
+    subtitle: 'Property Listings',
+    desc: 'A property listing and management web app with search, filters, and a server-side backend powered by ASP.NET and SQLite.',
+    tags: ['HTML', 'CSS', 'ASP.NET', 'JavaScript', 'SQLite'],
+    color: '#3b82f6',
+    image: realestateImg,
+  },
+  {
+    id: 'smp',
+    title: 'SMP System',
+    subtitle: 'School Management',
+    desc: 'A school management platform handling student records, scheduling, and reporting with a PHP/React hybrid stack.',
+    tags: ['PHP', 'React', 'MySQL', 'Tailwind CSS'],
+    color: '#6366f1',
+    image: smpImg,
+  },
+  {
+    id: 'trustpulse',
+    title: 'TrustPulse',
+    subtitle: 'Social Proof & Analytics',
+    desc: 'A real-time social proof and analytics tool that surfaces trust signals on landing pages, built with a React frontend and FastAPI backend.',
+    tags: ['React', 'TailwindCSS', 'FastAPI'],
+    color: '#06b6d4',
+    image: trustpulseImg,
+  },
+]
 
 const INTERVAL = 4500
 
@@ -64,16 +149,25 @@ export default function Projects() {
             minHeight: '340px',
           }}
         >
+          {/* Decorative glows */}
           <div
             className="absolute top-0 right-0 w-72 h-72 rounded-full pointer-events-none"
-            style={{ background: `radial-gradient(circle, ${proj.color}12 0%, transparent 70%)`, transform: 'translate(30%, -30%)' }}
+            style={{
+              background: `radial-gradient(circle, ${proj.color}12 0%, transparent 70%)`,
+              transform: 'translate(30%, -30%)',
+            }}
           />
           <div
             className="absolute bottom-0 left-0 w-48 h-48 rounded-full pointer-events-none"
-            style={{ background: `radial-gradient(circle, ${proj.color}08 0%, transparent 70%)`, transform: 'translate(-30%, 30%)' }}
+            style={{
+              background: `radial-gradient(circle, ${proj.color}08 0%, transparent 70%)`,
+              transform: 'translate(-30%, 30%)',
+            }}
           />
 
+          {/* Main card content */}
           <div className="relative z-10 p-8 md:p-12 flex flex-col md:flex-row gap-10 items-start">
+            {/* Project image */}
             <div
               className="w-full md:w-80 flex-shrink-0 rounded-xl overflow-hidden"
               style={{
@@ -102,7 +196,7 @@ export default function Projects() {
                       <path d="m21 15-5-5L5 21"/>
                     </svg>
                     <span style="font-size:10px;color:${proj.color}50;font-family:monospace">
-                      projects/${proj.id}.jpg
+                      projects/${proj.id}.jpeg
                     </span>
                   `
                   e.target.parentNode.appendChild(fb)
@@ -110,6 +204,7 @@ export default function Projects() {
               />
             </div>
 
+            {/* Project info */}
             <div className="flex-1 space-y-4">
               <div>
                 <p
@@ -137,30 +232,10 @@ export default function Projects() {
                   </span>
                 ))}
               </div>
-
-              <div className="flex gap-3 pt-2">
-                <button
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 hover:opacity-80"
-                  style={{ background: proj.color, color: 'white' }}
-                >
-                  <ExternalLink size={14} />
-                  Live Demo
-                </button>
-                <button
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200"
-                  style={{
-                    background: 'rgba(255,255,255,0.05)',
-                    border: '1px solid rgba(255,255,255,0.1)',
-                    color: '#d1d5db',
-                  }}
-                >
-                  <Github size={14} />
-                  GitHub
-                </button>
-              </div>
             </div>
           </div>
 
+          {/* Dot indicators + nav arrows */}
           <div className="relative z-10 px-8 md:px-12 pb-8 flex items-center justify-between">
             <div className="flex items-center gap-2">
               {PROJECTS.map((_, i) => (
@@ -211,7 +286,8 @@ export default function Projects() {
           </div>
         </div>
 
-        <div className="grid grid-cols-5 gap-3">
+        {/* Thumbnail strip */}
+        <div className="grid grid-cols-4 sm:grid-cols-8 gap-3">
           {PROJECTS.map((p, i) => (
             <button
               key={p.id}
