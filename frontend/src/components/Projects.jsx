@@ -41,7 +41,7 @@ const PROJECTS = [
   },
   {
     id: 'museo',
-    title: 'Museo',
+    title: 'Pambansang Museo',
     subtitle: 'Museum / Gallery',
     desc: 'An interactive museum guide web app presenting exhibits and collections with clean, accessible design using vanilla web technologies.',
     tags: ['HTML', 'CSS', 'JavaScript'],
