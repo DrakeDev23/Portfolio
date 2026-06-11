@@ -11,104 +11,53 @@ import realestateImg from '../assets/images/projects/realestate.jpeg'
 import smpImg from '../assets/images/projects/smp.jpeg'
 import trustpulseImg from '../assets/images/projects/trustpulse.jpeg'
 
-const PROJECTS = [
-  {
-    id: 'AWSCC - Flurry',
-    title: 'AWS Skill Builder',
-    subtitle: 'Org Project',
-    desc: 'My role in this project was focused on the frontend building responsive, accessible UI components',
-    tags: ['Reactjs', 'Tailwind CSS'],
-    color: '#FF9900',
-    image: awsImg,
-  },
-  {
-    id: 'beauty',
-    title: 'Beauty Platform',
-    subtitle: 'E-Commerce / Beauty',
-    desc: 'A full featured beauty e-commerce platform with product listings, cart management, and a custom CMS built on a PHP backend.',
-    tags: ['PHP', 'TailwindCSS', 'JavaScript', 'MySQL', 'HTML'],
-    color: '#ec4899',
-    image: beautyImg,
-  },
-  {
-    id: 'me',
-    title: 'My Portfolio',
-    subtitle: 'Personal Site',
-    desc: 'My personal developer portfolio showcasing projects, skills, and experience. Built with a modern React frontend and a FastAPI backend.',
-    tags: ['Reactjs', 'Tailwindcss', 'FastAPI'],
-    color: '#7a33ff',
-    image: meImg,
-  },
-  {
-    id: 'museo',
-    title: 'Pambansang Museo',
-    subtitle: 'Museum / Gallery',
-    desc: 'An interactive museum guide web app presenting exhibits and collections with clean, accessible design using vanilla web technologies.',
-    tags: ['HTML', 'CSS', 'JavaScript'],
-    color: '#f59e0b',
-    image: museoImg,
-  },
-  {
-    id: 'publika',
-    title: 'Publika',
-    subtitle: 'E-Service',
-    desc: 'this project was made for school contest and got 1st runner up',
-    tags: ['HTML', 'CSS', 'JavaScript'],
-    color: '#10b981',
-    image: publikaImg,
-  },
-  {
-    id: 'realestate',
-    title: 'Haven',
-    subtitle: 'Capstone Project',
-    desc: 'A property listing and management web app with search, filters, and a server-side backend powered by ASP.NET and SQLite.',
-    tags: ['HTML', 'CSS', 'ASP.NET', 'JavaScript', 'SQLite'],
-    color: '#3b82f6',
-    image: realestateImg,
-  },
-  {
-    id: 'smp',
-    title: 'NULL SMP',
-    subtitle: 'Minecraft Server',
-    desc: 'A minecraft server with plugins and custom features.',
-    tags: ['Reactjs', 'php', 'MySQL', 'Tailwind CSS'],
-    color: '#6366f1',
-    image: smpImg,
-  },
-  {
-    id: 'trustpulse',
-    title: 'TrvstPvlse',
-    subtitle: 'Phishing Detection',
-    desc: 'A real-time phishing detection tool that surfaces trust signals on landing pages, built with a React frontend and FastAPI backend.',
-    tags: ['Reactjs', 'TailwindCSS', 'FastAPI'],
-    color: '#06b6d4',
-    image: trustpulseImg,
-  },
-]
+const IMAGE_MAP = {
+  'awscc-flurry': awsImg,
+  beauty: beautyImg,
+  me: meImg,
+  museo: museoImg,
+  publika: publikaImg,
+  realestate: realestateImg,
+  smp: smpImg,
+  trustpulse: trustpulseImg,
+}
 
 const INTERVAL = 4500
 
 export default function Projects() {
+  const [projects, setProjects] = useState([])
+  const [loading, setLoading] = useState(true)
   const [current, setCurrent] = useState(0)
   const [direction, setDirection] = useState(1)
   const intervalRef = useRef(null)
+
+  useEffect(() => {
+    fetch('http://localhost:8000/api/projects')
+      .then((r) => r.json())
+      .then((data) => {
+        setProjects(data)
+        setLoading(false)
+      })
+      .catch(() => setLoading(false))
+  }, [])
 
   const resetTimer = useCallback(() => {
     clearInterval(intervalRef.current)
     intervalRef.current = setInterval(() => {
       setDirection(1)
-      setCurrent((c) => (c + 1) % PROJECTS.length)
+      setCurrent((c) => (c + 1) % projects.length)
     }, INTERVAL)
-  }, [])
+  }, [projects.length])
 
   useEffect(() => {
+    if (projects.length === 0) return
     resetTimer()
     return () => clearInterval(intervalRef.current)
-  }, [resetTimer])
+  }, [resetTimer, projects.length])
 
   const go = (dir) => {
     setDirection(dir)
-    setCurrent((c) => (c + dir + PROJECTS.length) % PROJECTS.length)
+    setCurrent((c) => (c + dir + projects.length) % projects.length)
     resetTimer()
   }
 
@@ -118,7 +67,36 @@ export default function Projects() {
     resetTimer()
   }
 
-  const proj = PROJECTS[current]
+  if (loading) {
+    return (
+      <section id="projects" className="py-28 relative" style={{ backgroundColor: '#090514' }}>
+        <div className="max-w-6xl mx-auto px-6 relative z-10">
+          <SectionHeader eyebrow="My Work" title="Featured Projects" />
+          <div
+            className="rounded-2xl flex items-center justify-center"
+            style={{
+              minHeight: '340px',
+              background: 'rgba(122,51,255,0.05)',
+              border: '1px solid rgba(122,51,255,0.12)',
+            }}
+          >
+            <div className="flex flex-col items-center gap-3">
+              <div
+                className="w-8 h-8 rounded-full border-2 animate-spin"
+                style={{ borderColor: 'rgba(122,51,255,0.5)', borderTopColor: 'transparent' }}
+              />
+              <p className="text-gray-500 text-sm">Loading projects...</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  if (projects.length === 0) return null
+
+  const proj = projects[current]
+  const projImage = IMAGE_MAP[proj.id]
 
   return (
     <section
@@ -171,32 +149,13 @@ export default function Projects() {
                 border: `1px solid ${proj.color}20`,
               }}
             >
-              <img
-                src={proj.image}
-                alt={`${proj.title} screenshot`}
-                className="w-full h-full object-cover"
-                onError={(e) => {
-                  e.target.style.display = 'none'
-                  const fb = document.createElement('div')
-                  fb.style.cssText = `
-                    width:100%;height:100%;display:flex;flex-direction:column;
-                    align-items:center;justify-content:center;gap:8px;
-                    background: linear-gradient(135deg, ${proj.color}18, #0f0c22);
-                  `
-                  fb.innerHTML = `
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none"
-                      stroke="${proj.color}60" stroke-width="1.5">
-                      <rect x="3" y="3" width="18" height="18" rx="2"/>
-                      <circle cx="8.5" cy="8.5" r="1.5"/>
-                      <path d="m21 15-5-5L5 21"/>
-                    </svg>
-                    <span style="font-size:10px;color:${proj.color}50;font-family:monospace">
-                      projects/${proj.id}.jpeg
-                    </span>
-                  `
-                  e.target.parentNode.appendChild(fb)
-                }}
-              />
+              {projImage && (
+                <img
+                  src={projImage}
+                  alt={`${proj.title} screenshot`}
+                  className="w-full h-full object-cover"
+                />
+              )}
             </div>
 
             <div className="flex-1 space-y-4">
@@ -231,7 +190,7 @@ export default function Projects() {
 
           <div className="relative z-10 px-8 md:px-12 pb-8 flex items-center justify-between">
             <div className="flex items-center gap-2">
-              {PROJECTS.map((_, i) => (
+              {projects.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => goTo(i)}
@@ -280,7 +239,7 @@ export default function Projects() {
         </div>
 
         <div className="grid grid-cols-4 sm:grid-cols-8 gap-3">
-          {PROJECTS.map((p, i) => (
+          {projects.map((p, i) => (
             <button
               key={p.id}
               onClick={() => goTo(i)}

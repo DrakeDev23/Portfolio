@@ -1,6 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Code2, Shield } from 'lucide-react'
-import { SKILLS } from '../constants/data'
 import SectionHeader from './SectionHeader'
 
 const TABS = [
@@ -10,6 +9,15 @@ const TABS = [
 
 export default function Skills() {
   const [activeTab, setActiveTab] = useState('Development')
+  const [skills, setSkills] = useState({})
+
+  useEffect(() => {
+    fetch('http://localhost:8000/api/skills')
+      .then((r) => r.json())
+      .then((data) => setSkills(data))
+  }, [])
+
+  const current = skills[activeTab] || []
 
   return (
     <section
@@ -21,7 +29,6 @@ export default function Skills() {
         className="absolute top-0 left-0 right-0 h-px"
         style={{ background: 'linear-gradient(90deg, transparent, rgba(122,51,255,0.3), transparent)' }}
       />
-
       <div
         className="absolute left-0 top-1/2 -translate-y-1/2 w-72 h-72 rounded-full pointer-events-none"
         style={{ background: 'radial-gradient(circle, rgba(122,51,255,0.08) 0%, transparent 70%)' }}
@@ -58,16 +65,18 @@ export default function Skills() {
         </div>
 
         <div className="flex flex-wrap justify-center gap-3 max-w-3xl mx-auto">
-          {SKILLS[activeTab].map((skill) => (
+          {current.map((skill) => (
             <span key={skill} className="skill-badge">
               {skill}
             </span>
           ))}
         </div>
 
-        <p className="text-center mt-8 text-gray-600 text-sm">
-          {SKILLS[activeTab].length} {activeTab === 'Development' ? 'technologies' : 'tools'} in stack
-        </p>
+        {current.length > 0 && (
+          <p className="text-center mt-8 text-gray-600 text-sm">
+            {current.length} {activeTab === 'Development' ? 'technologies' : 'tools'} in stack
+          </p>
+        )}
       </div>
     </section>
   )
