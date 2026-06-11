@@ -35,7 +35,7 @@ const PROJECTS = [
     title: 'My Portfolio',
     subtitle: 'Personal Site',
     desc: 'My personal developer portfolio showcasing projects, skills, and experience. Built with a modern React frontend and a FastAPI backend.',
-    tags: ['Reactjs', 'FastAPI'],
+    tags: ['Reactjs', 'Tailwindcss', 'FastAPI'],
     color: '#7a33ff',
     image: meImg,
   },

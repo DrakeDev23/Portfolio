@@ -1,9 +1,10 @@
-import { Github, Linkedin, Twitter, Terminal } from 'lucide-react'
+import { Github, Linkedin, Facebook, Instagram, Terminal } from 'lucide-react'
 
 const SOCIAL_LINKS = [
-  { icon: Github, label: 'GitHub', href: 'https://github.com' },
-  { icon: Linkedin, label: 'LinkedIn', href: 'https://linkedin.com' },
-  { icon: Twitter, label: 'Twitter', href: 'https://twitter.com' },
+  { icon: Github, label: 'GitHub', href: 'https://github.com/DrakeDev23' },
+  { icon: Linkedin, label: 'LinkedIn', href: 'https://www.linkedin.com/in/zedrick-dwyn-manguilimotan-85540b3b2/' },
+  { icon: Facebook, label: 'Facebook', href: 'https://www.facebook.com/stephen.mart.98' },
+  { icon: Instagram, label: 'Instagram', href: 'https://www.instagram.com/0_dr4k3/' },
 ]
 
 export default function Footer() {

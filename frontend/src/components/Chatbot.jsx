@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from 'react'
-import { MessageSquare, X, Send, Bot } from 'lucide-react'
+import { MessageSquare, X, Send } from 'lucide-react'
 import { CHATBOT_RESPONSES } from '../constants/data'
+import avatar from '../assets/images/avatar.jpg'
+
 
 const INITIAL_MESSAGES = [
   {
@@ -10,17 +12,26 @@ const INITIAL_MESSAGES = [
   },
 ]
 
+const AVATAR = avatar;
+
 function ChatMessage({ msg }) {
   const isUser = msg.role === 'user'
   return (
     <div className={`flex items-end gap-2 ${isUser ? 'flex-row-reverse' : 'flex-row'}`}>
       {!isUser && (
-        <div
-          className="w-6 h-6 rounded-full flex-shrink-0 flex items-center justify-center mb-0.5"
-          style={{ background: 'rgba(122,51,255,0.2)', color: '#9b6dff' }}
-        >
-          <Bot size={12} />
-        </div>
+        <img
+          src={AVATAR}
+          alt="Drake"
+          style={{
+            width: '24px',
+            height: '24px',
+            borderRadius: '50%',
+            objectFit: 'cover',
+            flexShrink: 0,
+            marginBottom: '2px',
+            border: '1px solid rgba(122,51,255,0.3)',
+          }}
+        />
       )}
       <div
         className="max-w-[82%] px-3.5 py-2.5 rounded-2xl text-xs leading-relaxed"
@@ -48,12 +59,18 @@ function ChatMessage({ msg }) {
 function TypingIndicator() {
   return (
     <div className="flex items-end gap-2">
-      <div
-        className="w-6 h-6 rounded-full flex-shrink-0 flex items-center justify-center"
-        style={{ background: 'rgba(122,51,255,0.2)', color: '#9b6dff' }}
-      >
-        <Bot size={12} />
-      </div>
+      <img
+        src={AVATAR}
+        alt="Drake"
+        style={{
+          width: '24px',
+          height: '24px',
+          borderRadius: '50%',
+          objectFit: 'cover',
+          flexShrink: 0,
+          border: '1px solid rgba(122,51,255,0.3)',
+        }}
+      />
       <div
         className="px-4 py-3 rounded-2xl flex gap-1.5 items-center"
         style={{
@@ -125,6 +142,7 @@ export default function Chatbot() {
           role="dialog"
           aria-label="AI Chat Assistant"
         >
+          {/* Messenger-style header */}
           <div
             className="flex items-center gap-3 px-4 py-3 flex-shrink-0"
             style={{
@@ -132,21 +150,36 @@ export default function Chatbot() {
               borderBottom: '1px solid rgba(122,51,255,0.2)',
             }}
           >
-            <div
-              className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
-              style={{ background: 'linear-gradient(135deg, #7A33FF, #b347ff)', color: 'white' }}
-            >
-              <Bot size={14} />
+            <div style={{ position: 'relative', flexShrink: 0 }}>
+              <img
+                src={AVATAR}
+                alt="Drake Delos Reyes"
+                style={{
+                  width: '38px',
+                  height: '38px',
+                  borderRadius: '50%',
+                  objectFit: 'cover',
+                  border: '2px solid rgba(122,51,255,0.45)',
+                  display: 'block',
+                }}
+              />
+              <span
+                style={{
+                  position: 'absolute',
+                  bottom: '1px',
+                  right: '1px',
+                  width: '10px',
+                  height: '10px',
+                  borderRadius: '50%',
+                  background: '#4ade80',
+                  border: '2px solid #0d0a1e',
+                  boxShadow: '0 0 6px rgba(74,222,128,0.7)',
+                }}
+              />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-white text-sm font-semibold leading-none mb-1">Drake&apos;s Assistant</p>
-              <div className="flex items-center gap-1.5">
-                <span
-                  className="w-1.5 h-1.5 rounded-full bg-green-400"
-                  style={{ boxShadow: '0 0 6px rgba(74,222,128,0.7)' }}
-                />
-                <span className="text-green-400 text-xs">Online</span>
-              </div>
+              <p className="text-white text-sm font-semibold leading-none mb-1">Drake Delos Reyes</p>
+              <p style={{ color: '#4ade80', fontSize: '11px', margin: 0 }}>Active now</p>
             </div>
             <button
               onClick={() => setOpen(false)}
@@ -157,6 +190,7 @@ export default function Chatbot() {
             </button>
           </div>
 
+          {/* Messages */}
           <div
             className="flex-1 overflow-y-auto p-4 space-y-4"
             style={{ overscrollBehavior: 'contain' }}
@@ -168,6 +202,7 @@ export default function Chatbot() {
             <div ref={bottomRef} />
           </div>
 
+          {/* Input */}
           <div
             className="p-3 flex gap-2 flex-shrink-0"
             style={{ borderTop: '1px solid rgba(122,51,255,0.15)' }}
@@ -202,9 +237,10 @@ export default function Chatbot() {
                 width: '34px',
                 height: '34px',
                 borderRadius: '10px',
-                background: input.trim() && !typing
-                  ? 'linear-gradient(135deg, #7A33FF, #b347ff)'
-                  : 'rgba(255,255,255,0.05)',
+                background:
+                  input.trim() && !typing
+                    ? 'linear-gradient(135deg, #7A33FF, #b347ff)'
+                    : 'rgba(255,255,255,0.05)',
                 color: input.trim() && !typing ? 'white' : 'rgba(255,255,255,0.2)',
                 border: 'none',
                 cursor: input.trim() && !typing ? 'pointer' : 'default',
@@ -217,6 +253,7 @@ export default function Chatbot() {
         </div>
       )}
 
+      {/* Floating button */}
       <button
         onClick={() => setOpen((o) => !o)}
         aria-label={open ? 'Close AI chat' : 'Open AI chat'}
