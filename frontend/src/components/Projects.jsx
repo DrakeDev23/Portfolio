@@ -13,7 +13,7 @@ import trustpulseImg from '../assets/images/projects/trustpulse.jpeg'
 
 const PROJECTS = [
   {
-    id: 'AWSCC - Flurr',
+    id: 'AWSCC - Flurry',
     title: 'AWS Skill Builder',
     subtitle: 'Org Project',
     desc: 'My role in this project was focused on the frontend building responsive, accessible UI components',

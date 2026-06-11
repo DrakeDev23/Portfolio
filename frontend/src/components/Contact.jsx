@@ -4,7 +4,7 @@ import SectionHeader from './SectionHeader'
 import GlassCard from './GlassCard'
 
 const INFO_ITEMS = [
-  { icon: Mail, label: 'Email', value: 'drake@example.com' },
+  { icon: Mail, label: 'Email', value: 'maccogoth@example.com' },
   { icon: MapPin, label: 'Location', value: 'Cebu City, Philippines' },
   { icon: Clock, label: 'Response Time', value: 'Within 24 hours' },
 ]
@@ -75,7 +75,7 @@ export default function Contact() {
           <div className="space-y-6">
             <p className="text-gray-400 leading-relaxed">
               Whether you have a project idea, a CTF team invitation, or just want to connect
-              — the inbox is open. I&apos;ll get back within a day.
+              the inbox is open. I&apos;ll get back within a day.
             </p>
 
             <div className="space-y-4">

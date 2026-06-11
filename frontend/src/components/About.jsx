@@ -20,8 +20,8 @@ const HOBBIES = [
   },
   {
     icon: <Gamepad2 size={22} strokeWidth={1.5} />,
-    label: 'Cycling',
-    desc: 'Cycling is my meditation. It clears my head and helps me approach problems with a fresh perspective.',
+    label: 'Gaming',
+    desc: 'Gaming is my meditation. It clears my head and helps me approach problems with a fresh perspective.',
   },
 ]
 
