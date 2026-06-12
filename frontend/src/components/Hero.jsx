@@ -46,7 +46,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center overflow-hidden"
+      className="relative min-h-screen flex items-center overflow-x-hidden"
       style={{ backgroundColor: '#090514' }}
     >
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -72,10 +72,10 @@ export default function Hero() {
         />
       </div>
 
-      <div className="max-w-6xl mx-auto px-6 pt-24 pb-16 grid md:grid-cols-2 gap-16 items-center relative z-10 w-full">
-        <div className="space-y-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-24 pb-12 sm:pb-16 grid md:grid-cols-2 gap-10 sm:gap-12 md:gap-16 items-center relative z-10 w-full">
+        <div className="space-y-6 sm:space-y-8">
           <div
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm font-medium"
             style={{
               background: 'rgba(122, 51, 255, 0.1)',
               border: '1px solid rgba(122, 51, 255, 0.25)',
@@ -83,18 +83,18 @@ export default function Hero() {
             }}
           >
             <span
-              className="w-2 h-2 rounded-full bg-green-400"
+              className="w-2 h-2 rounded-full bg-green-400 shrink-0"
               style={{ boxShadow: '0 0 8px rgba(74, 222, 128, 0.8)' }}
             />
             Open to opportunities
           </div>
 
           <div>
-            <p className="text-gray-400 text-lg mb-2 font-light">Hello, I&apos;m</p>
+            <p className="text-gray-400 text-base sm:text-lg mb-2 font-light">Hello, I&apos;m</p>
             <h1
-              className="font-black leading-none mb-4"
+              className="font-black leading-none mb-3 sm:mb-4"
               style={{
-                fontSize: 'clamp(3rem, 8vw, 5.5rem)',
+                fontSize: 'clamp(2.5rem, 12vw, 5.5rem)',
                 background: 'linear-gradient(135deg, #ffffff 0%, #c084fc 50%, #7A33FF 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
@@ -104,15 +104,15 @@ export default function Hero() {
               Drake
             </h1>
 
-            <div className="flex items-center gap-0 h-9">
+            <div className="flex flex-wrap items-center gap-0 min-h-9">
               <span
-                className="text-xl md:text-2xl font-semibold"
+                className="text-lg sm:text-xl md:text-2xl font-semibold break-words"
                 style={{ color: '#9b6dff' }}
               >
                 {displayText}
               </span>
               <span
-                className="cursor-blink text-xl md:text-2xl font-light ml-0.5"
+                className="cursor-blink text-lg sm:text-xl md:text-2xl font-light ml-0.5"
                 style={{ color: '#7A33FF' }}
               >
                 |
@@ -120,19 +120,19 @@ export default function Hero() {
             </div>
           </div>
 
-          <p className="text-gray-400 leading-relaxed max-w-md text-base">
+          <p className="text-gray-400 leading-relaxed max-w-md text-sm sm:text-base">
             BSIT student building secure, performant software. I bridge clean frontend
             experiences with hardened backend systems and break things professionally in CTFs.
           </p>
 
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-3 sm:gap-4">
             {[
               { icon: <Code2 size={14} />, label: '19+ technologies' },
               { icon: <Shield size={14} />, label: '8 security tools' },
             ].map(({ icon, label }) => (
               <div
                 key={label}
-                className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm"
+                className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs sm:text-sm"
                 style={{
                   background: 'rgba(255,255,255,0.03)',
                   border: '1px solid rgba(122,51,255,0.15)',
@@ -145,14 +145,14 @@ export default function Hero() {
             ))}
           </div>
 
-          <div className="flex flex-wrap gap-4">
-            <a href="/cv.pdf" download className="btn-primary">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
+            <a href="/cv.pdf" download className="btn-primary justify-center w-full sm:w-auto">
               <Download size={16} />
               Download CV
             </a>
             <button
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              className="btn-outline"
+              className="btn-outline justify-center w-full sm:w-auto"
             >
               Get in Touch
               <ArrowRight size={16} />
@@ -160,7 +160,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center pt-4 md:pt-0">
           <div className="relative">
             <div
               className="absolute inset-[-2px] rounded-full"
@@ -174,10 +174,7 @@ export default function Hero() {
             />
 
             <div
-              className="absolute rounded-full border border-[rgba(122,51,255,0.2)] animate-spin-slow"
-              style={{
-                inset: '-20px',
-              }}
+              className="absolute inset-[-12px] sm:inset-[-20px] rounded-full border border-[rgba(122,51,255,0.2)] animate-spin-slow"
             >
               <div
                 className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full"
@@ -189,9 +186,8 @@ export default function Hero() {
             </div>
 
             <div
-              className="absolute rounded-full border border-[rgba(155,109,255,0.1)]"
+              className="absolute inset-[-24px] sm:inset-[-40px] rounded-full border border-[rgba(155,109,255,0.1)]"
               style={{
-                inset: '-40px',
                 animation: 'spin 22s linear infinite reverse',
               }}
             >
@@ -205,7 +201,7 @@ export default function Hero() {
             </div>
 
             <div
-              className="relative w-60 h-60 md:w-72 md:h-72 rounded-full overflow-hidden"
+              className="relative w-40 h-40 sm:w-60 sm:h-60 md:w-72 md:h-72 rounded-full overflow-hidden"
               style={{
                 border: '2px solid rgba(122,51,255,0.4)',
                 boxShadow: '0 0 60px rgba(122,51,255,0.2), inset 0 0 40px rgba(122,51,255,0.05)',
@@ -233,7 +229,7 @@ export default function Hero() {
             </div>
 
             <div
-              className="absolute -bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap"
+              className="absolute -bottom-4 left-1/2 -translate-x-1/2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-[10px] sm:text-xs font-semibold whitespace-nowrap"
               style={{
                 background: 'rgba(9, 5, 20, 0.95)',
                 border: '1px solid rgba(122,51,255,0.35)',

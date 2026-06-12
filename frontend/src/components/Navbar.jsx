@@ -36,8 +36,8 @@ export default function Navbar() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
-          ? 'bg-[#090514]/90 backdrop-blur-xl border-b border-[rgba(122,51,255,0.15)]'
-          : 'bg-transparent'
+        ? 'bg-[#090514]/90 backdrop-blur-xl border-b border-[rgba(122,51,255,0.15)]'
+        : 'bg-transparent'
         }`}
     >
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
@@ -68,8 +68,8 @@ export default function Navbar() {
               key={link}
               onClick={() => scrollTo(link)}
               className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${activeSection === link
-                  ? 'text-white'
-                  : 'text-gray-400 hover:text-gray-200 hover:bg-white/5'
+                ? 'text-white'
+                : 'text-gray-400 hover:text-gray-200 hover:bg-white/5'
                 }`}
             >
               {activeSection === link && (
@@ -104,7 +104,7 @@ export default function Navbar() {
 
       {menuOpen && (
         <div
-          className="md:hidden border-t"
+          className="md:hidden border-t absolute top-16 left-0 right-0 max-h-[calc(100vh-4rem)] overflow-y-auto"
           style={{
             background: 'rgba(9, 5, 20, 0.97)',
             backdropFilter: 'blur(20px)',
@@ -117,8 +117,8 @@ export default function Navbar() {
                 key={link}
                 onClick={() => scrollTo(link)}
                 className={`text-left px-4 py-3 rounded-lg text-sm font-medium transition-all ${activeSection === link
-                    ? 'text-white bg-[rgba(122,51,255,0.12)]'
-                    : 'text-gray-400 hover:text-white hover:bg-white/5'
+                  ? 'text-white bg-[rgba(122,51,255,0.12)]'
+                  : 'text-gray-400 hover:text-white hover:bg-white/5'
                   }`}
               >
                 {link}
