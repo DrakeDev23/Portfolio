@@ -3,22 +3,18 @@ import { Mail, MapPin, Clock, Send, CheckCircle } from 'lucide-react'
 import SectionHeader from './SectionHeader'
 import GlassCard from './GlassCard'
 
-// ── API base URL from Vite env ─────────────────────────────────────────────
 const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:8000'
 
-// ── Static info ────────────────────────────────────────────────────────────
 const INFO_ITEMS = [
   { icon: Mail, label: 'Email', value: 'maccogoth@example.com' },
   { icon: MapPin, label: 'Location', value: 'Cebu City, Philippines' },
   { icon: Clock, label: 'Response Time', value: 'Within 24 hours' },
 ]
 
-// ── Limits (mirror backend) ────────────────────────────────────────────────
 const LIMITS = { name: 80, email: 254, subject: 150, message: 2000 }
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
 
-// ── Client-side sanitize ───────────────────────────────────────────────────
 function sanitize(value, maxLen) {
   return value
     .replace(/<[^>]*>/g, '')
@@ -36,7 +32,6 @@ function sanitizeForm(f) {
   }
 }
 
-// ── Validation ─────────────────────────────────────────────────────────────
 function validate(f) {
   const e = {}
   if (!f.name) e.name = 'Name is required.'
