@@ -153,7 +153,6 @@ export default function Contact() {
         <SectionHeader eyebrow="Reach Out" title="Get in Touch" />
 
         <div className="grid md:grid-cols-2 gap-10">
-          {/* Left */}
           <div className="space-y-6">
             <p className="text-gray-400 leading-relaxed">
               Whether you have a project idea, a CTF team invitation, or just want to connect
@@ -181,7 +180,6 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Right */}
           <GlassCard>
             {status === 'sent' ? (
               <div className="flex flex-col items-center justify-center py-14 text-center gap-4">
