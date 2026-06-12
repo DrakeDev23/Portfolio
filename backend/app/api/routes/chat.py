@@ -9,7 +9,7 @@ from app.core.limiter import limiter
 
 router = APIRouter()
 
-MESSAGE_MAX = 500
+MESSAGE_MAX = 1000
 HISTORY_MAX_TURNS = 8
 
 _TAG_RE  = re.compile(r"<[^>]*>")

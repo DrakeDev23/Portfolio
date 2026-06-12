@@ -3,7 +3,7 @@ import { MessageSquare, X, Send } from 'lucide-react'
 import avatar from '../assets/images/avatar.jpeg'
 
 const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:8000'
-const MESSAGE_MAX = 500
+const MESSAGE_MAX = 1000
 const HISTORY_MAX_TURNS = 8
 
 const INITIAL_MESSAGES = [
@@ -36,19 +36,25 @@ function ChatMessage({ msg }) {
         />
       )}
       <div
-        className="max-w-[82%] px-3.5 py-2.5 rounded-2xl text-xs leading-relaxed"
+        className="max-w-[82%] px-3.5 py-2.5 rounded-2xl text-xs leading-relaxed break-words"
         style={
           isUser
             ? {
               background: 'linear-gradient(135deg, #7A33FF, #b347ff)',
               color: 'white',
               borderBottomRightRadius: '4px',
+              overflowWrap: 'break-word',
+              wordBreak: 'break-word',
+              whiteSpace: 'pre-wrap',
             }
             : {
               background: 'rgba(255,255,255,0.05)',
               border: '1px solid rgba(122,51,255,0.15)',
               color: '#d1d5db',
               borderBottomLeftRadius: '4px',
+              overflowWrap: 'break-word',
+              wordBreak: 'break-word',
+              whiteSpace: 'pre-wrap',
             }
         }
       >
@@ -234,52 +240,65 @@ export default function Chatbot() {
           </div>
 
           <div
-            className="p-3 flex gap-2 flex-shrink-0"
+            className="p-3 flex flex-col gap-1.5 flex-shrink-0"
             style={{ borderTop: '1px solid rgba(122,51,255,0.15)' }}
           >
-            <input
-              ref={inputRef}
-              value={input}
-              onChange={(e) => setInput(e.target.value.slice(0, MESSAGE_MAX))}
-              onKeyDown={onKeyDown}
-              placeholder="Ask anything..."
-              aria-label="Chat message"
-              maxLength={MESSAGE_MAX}
-              className="flex-1"
-              style={{
-                background: 'rgba(255,255,255,0.04)',
-                border: '1px solid rgba(122,51,255,0.2)',
-                borderRadius: '10px',
-                padding: '8px 12px',
-                color: '#e5e7eb',
-                fontSize: '12px',
-                outline: 'none',
-                fontFamily: 'Inter, system-ui, sans-serif',
-              }}
-              onFocus={(e) => (e.target.style.borderColor = 'rgba(122,51,255,0.5)')}
-              onBlur={(e) => (e.target.style.borderColor = 'rgba(122,51,255,0.2)')}
-            />
-            <button
-              onClick={send}
-              disabled={!input.trim() || typing}
-              aria-label="Send message"
-              className="flex items-center justify-center transition-all duration-200"
-              style={{
-                width: '34px',
-                height: '34px',
-                borderRadius: '10px',
-                background:
-                  input.trim() && !typing
-                    ? 'linear-gradient(135deg, #7A33FF, #b347ff)'
-                    : 'rgba(255,255,255,0.05)',
-                color: input.trim() && !typing ? 'white' : 'rgba(255,255,255,0.2)',
-                border: 'none',
-                cursor: input.trim() && !typing ? 'pointer' : 'default',
-                flexShrink: 0,
-              }}
-            >
-              <Send size={14} />
-            </button>
+            <div className="flex gap-2">
+              <input
+                ref={inputRef}
+                value={input}
+                onChange={(e) => setInput(e.target.value.slice(0, MESSAGE_MAX))}
+                onKeyDown={onKeyDown}
+                placeholder="Ask anything..."
+                aria-label="Chat message"
+                maxLength={MESSAGE_MAX}
+                className="flex-1"
+                style={{
+                  background: 'rgba(255,255,255,0.04)',
+                  border: '1px solid rgba(122,51,255,0.2)',
+                  borderRadius: '10px',
+                  padding: '8px 12px',
+                  color: '#e5e7eb',
+                  fontSize: '12px',
+                  outline: 'none',
+                  fontFamily: 'Inter, system-ui, sans-serif',
+                }}
+                onFocus={(e) => (e.target.style.borderColor = 'rgba(122,51,255,0.5)')}
+                onBlur={(e) => (e.target.style.borderColor = 'rgba(122,51,255,0.2)')}
+              />
+              <button
+                onClick={send}
+                disabled={!input.trim() || typing}
+                aria-label="Send message"
+                className="flex items-center justify-center transition-all duration-200"
+                style={{
+                  width: '34px',
+                  height: '34px',
+                  borderRadius: '10px',
+                  background:
+                    input.trim() && !typing
+                      ? 'linear-gradient(135deg, #7A33FF, #b347ff)'
+                      : 'rgba(255,255,255,0.05)',
+                  color: input.trim() && !typing ? 'white' : 'rgba(255,255,255,0.2)',
+                  border: 'none',
+                  cursor: input.trim() && !typing ? 'pointer' : 'default',
+                  flexShrink: 0,
+                }}
+              >
+                <Send size={14} />
+              </button>
+            </div>
+            {input.length > MESSAGE_MAX * 0.9 && (
+              <span
+                style={{
+                  fontSize: '10px',
+                  color: input.length >= MESSAGE_MAX ? '#f87171' : '#9ca3af',
+                  textAlign: 'right',
+                }}
+              >
+                {input.length}/{MESSAGE_MAX}
+              </span>
+            )}
           </div>
         </div>
       )}
