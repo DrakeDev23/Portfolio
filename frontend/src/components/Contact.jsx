@@ -29,6 +29,7 @@ function sanitizeForm(f) {
     email: sanitize(f.email, LIMITS.email),
     subject: sanitize(f.subject, LIMITS.subject),
     message: sanitize(f.message, LIMITS.message),
+    website: f.website, // honeypot — passed through untouched
   }
 }
 
@@ -90,7 +91,7 @@ function FormInput({ as: Tag = 'input', error, style: extra, ...props }) {
   )
 }
 
-const EMPTY = { name: '', email: '', subject: '', message: '' }
+const EMPTY = { name: '', email: '', subject: '', message: '', website: '' }
 
 export default function Contact() {
   const [form, setForm] = useState(EMPTY)
@@ -251,6 +252,34 @@ export default function Contact() {
                   error={errors.message}
                   style={{ resize: 'none', lineHeight: '1.6' }}
                 />
+
+                {/* Honeypot field — invisible to real users, bots that
+                    auto-fill every input will populate it and get silently
+                    dropped server-side. Keep it out of the visual flow and
+                    out of tab order / screen readers. */}
+                <div
+                  aria-hidden="true"
+                  style={{
+                    position: 'absolute',
+                    width: '1px',
+                    height: '1px',
+                    overflow: 'hidden',
+                    opacity: 0,
+                    pointerEvents: 'none',
+                  }}
+                >
+                  <label htmlFor="website">Leave this field empty</label>
+                  <input
+                    id="website"
+                    name="website"
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={form.website}
+                    onChange={set('website')}
+                  />
+                </div>
+
                 <button
                   type="submit"
                   disabled={status === 'sending'}
