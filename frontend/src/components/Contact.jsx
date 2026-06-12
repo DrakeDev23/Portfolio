@@ -12,6 +12,11 @@ const INFO_ITEMS = [
 ]
 
 const LIMITS = { name: 80, email: 254, subject: 150, message: 2000 }
+const MESSAGE_WORD_LIMIT = 255
+
+function wordCount(str) {
+  return str.trim().split(/\s+/).filter(Boolean).length
+}
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
 
@@ -43,6 +48,7 @@ function validate(f) {
   else if (f.subject.length < 3) e.subject = 'Subject must be at least 3 characters.'
   if (!f.message) e.message = 'Message is required.'
   else if (f.message.length < 10) e.message = 'Message must be at least 10 characters.'
+  else if (wordCount(f.message) > MESSAGE_WORD_LIMIT) e.message = `Message must be ${MESSAGE_WORD_LIMIT} words or fewer.`
   return e
 }
 
@@ -241,17 +247,29 @@ export default function Contact() {
                   maxLength={LIMITS.subject}
                   error={errors.subject}
                 />
-                <FormInput
-                  as="textarea"
-                  rows={5}
-                  placeholder="Your message..."
-                  value={form.message}
-                  onChange={set('message')}
-                  aria-label="Message"
-                  maxLength={LIMITS.message}
-                  error={errors.message}
-                  style={{ resize: 'none', lineHeight: '1.6' }}
-                />
+                <div>
+                  <FormInput
+                    as="textarea"
+                    rows={5}
+                    placeholder="Your message..."
+                    value={form.message}
+                    onChange={set('message')}
+                    aria-label="Message"
+                    maxLength={LIMITS.message}
+                    error={errors.message}
+                    style={{ resize: 'none', lineHeight: '1.6' }}
+                  />
+                  <p
+                    style={{
+                      fontSize: '11px',
+                      marginTop: '4px',
+                      paddingLeft: '4px',
+                      color: wordCount(form.message) > MESSAGE_WORD_LIMIT ? '#f87171' : '#6b7280',
+                    }}
+                  >
+                    {wordCount(form.message)} / {MESSAGE_WORD_LIMIT} words
+                  </p>
+                </div>
 
                 {/* Honeypot field — invisible to real users, bots that
                     auto-fill every input will populate it and get silently
