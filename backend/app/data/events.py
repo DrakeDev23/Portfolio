@@ -1,7 +1,7 @@
 EVENTS = [
     {
         "id": "ctf",
-        "name": "Capture The Flag — IT Days",
+        "name": "Capture The Flag",
         "location": "Cebu Eastern College, Cebu City",
         "date": "February 7, 2026",
         "role": "Champion",
@@ -10,7 +10,7 @@ EVENTS = [
     },
     {
         "id": "webdev",
-        "name": "Web Dev Design — IT Days",
+        "name": "Web Dev Design",
         "location": "Cebu Eastern College, Cebu City",
         "date": "February 7, 2026",
         "role": "1st Runner-Up",
