@@ -1,8 +1,10 @@
 import { useState, useEffect, useRef } from 'react'
 import { MessageSquare, X, Send } from 'lucide-react'
-import { CHATBOT_RESPONSES } from '../constants/data'
 import avatar from '../assets/images/avatar.jpg'
 
+const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:8000'
+const MESSAGE_MAX = 500
+const HISTORY_MAX_TURNS = 8
 
 const INITIAL_MESSAGES = [
   {
@@ -107,18 +109,51 @@ export default function Chatbot() {
     if (open) setTimeout(() => inputRef.current?.focus(), 150)
   }, [open])
 
-  const send = () => {
+  const send = async () => {
     const q = input.trim()
     if (!q || typing) return
-    setMessages((m) => [...m, { id: Date.now(), role: 'user', text: q }])
+
+    const userMsg = { id: Date.now(), role: 'user', text: q }
+    const nextMessages = [...messages, userMsg]
+    setMessages(nextMessages)
     setInput('')
     setTyping(true)
-    const delay = 900 + Math.random() * 700
-    setTimeout(() => {
-      const reply = CHATBOT_RESPONSES[Math.floor(Math.random() * CHATBOT_RESPONSES.length)]
-      setMessages((m) => [...m, { id: Date.now(), role: 'bot', text: reply }])
+
+    // Build history for the API: map our 'bot' role -> Gemini's 'model' role,
+    // skip the initial greeting, and keep only the last few turns.
+    const history = nextMessages
+      .filter((m) => m.id !== 'init')
+      .slice(0, -1) // exclude the message we're sending now (sent separately)
+      .slice(-HISTORY_MAX_TURNS)
+      .map((m) => ({
+        role: m.role === 'user' ? 'user' : 'model',
+        text: m.text,
+      }))
+
+    try {
+      const res = await fetch(`${API_URL}/api/chat`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: q, history }),
+      })
+
+      if (!res.ok) throw new Error(`Server error: ${res.status}`)
+
+      const data = await res.json()
+      setMessages((m) => [...m, { id: Date.now() + 1, role: 'bot', text: data.reply }])
+    } catch (err) {
+      console.error('Chat error:', err)
+      setMessages((m) => [
+        ...m,
+        {
+          id: Date.now() + 1,
+          role: 'bot',
+          text: "Sorry, I couldn't reach my brain just now. Please try again in a bit.",
+        },
+      ])
+    } finally {
       setTyping(false)
-    }, delay)
+    }
   }
 
   const onKeyDown = (e) => {
@@ -210,10 +245,11 @@ export default function Chatbot() {
             <input
               ref={inputRef}
               value={input}
-              onChange={(e) => setInput(e.target.value)}
+              onChange={(e) => setInput(e.target.value.slice(0, MESSAGE_MAX))}
               onKeyDown={onKeyDown}
               placeholder="Ask anything..."
               aria-label="Chat message"
+              maxLength={MESSAGE_MAX}
               className="flex-1"
               style={{
                 background: 'rgba(255,255,255,0.04)',
