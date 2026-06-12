@@ -34,7 +34,7 @@ function sanitizeForm(f) {
     email: sanitize(f.email, LIMITS.email),
     subject: sanitize(f.subject, LIMITS.subject),
     message: sanitize(f.message, LIMITS.message),
-    website: f.website, // honeypot — passed through untouched
+    website: f.website,
   }
 }
 
@@ -271,10 +271,6 @@ export default function Contact() {
                   </p>
                 </div>
 
-                {/* Honeypot field — invisible to real users, bots that
-                    auto-fill every input will populate it and get silently
-                    dropped server-side. Keep it out of the visual flow and
-                    out of tab order / screen readers. */}
                 <div
                   aria-hidden="true"
                   style={{
