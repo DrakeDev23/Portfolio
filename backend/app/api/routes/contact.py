@@ -6,18 +6,15 @@ from app.core.config import settings
 
 router = APIRouter()
 
-# ── Max lengths ───────────────────────────────────────────────────────────────
 NAME_MAX    = 80
 SUBJECT_MAX = 150
 MESSAGE_MAX = 2000
 
-# ── Sanitize helper ───────────────────────────────────────────────────────────
 def sanitize(value: str, max_len: int) -> str:
-    value = re.sub(r"<[^>]*>", "", value)          # strip HTML / script tags
-    value = re.sub(r"[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]", "", value)  # control chars
+    value = re.sub(r"<[^>]*>", "", value)          
+    value = re.sub(r"[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]", "", value)  
     return value.strip()[:max_len]
 
-# ── Request schema ────────────────────────────────────────────────────────────
 class ContactRequest(BaseModel):
     name:    str
     email:   EmailStr
@@ -48,7 +45,6 @@ class ContactRequest(BaseModel):
             raise ValueError("Message must be at least 10 characters.")
         return v
 
-# ── Endpoint ──────────────────────────────────────────────────────────────────
 @router.post("")
 async def send_contact(payload: ContactRequest):
     emailjs_payload = {
