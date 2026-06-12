@@ -16,10 +16,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# --- Body size limit ---------------------------------------------------------
-# Rejects oversized request bodies before they're read/parsed.
-# Contact form payload tops out around ~2.5KB, so 16KB is generous headroom.
-MAX_BODY_SIZE = 16 * 1024  # 16 KB
+MAX_BODY_SIZE = 16 * 1024  
 
 @app.middleware("http")
 async def limit_body_size(request: Request, call_next):
@@ -36,7 +33,6 @@ async def limit_body_size(request: Request, call_next):
     return await call_next(request)
 
 
-# --- Rate limiting -------------------------------------------------------------
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
