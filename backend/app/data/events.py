@@ -24,7 +24,7 @@ EVENTS = [
         "date": "December 7, 2025",
         "role": "Participant",
         "achievement": None,
-        "desc": "Attended the Google Gemini Study Jam, a hands-on workshop exploring Gemini AI capabilities, prompt engineering, and practical AI integrations for developers.",
+        "desc": "Attended the Google Gemini Study Jam, a hands-on workshop exploring Gemini AI capabilities and practical AI integrations for developers.",
     },
     {
         "id": "capstone",
