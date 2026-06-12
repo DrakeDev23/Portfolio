@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { MessageSquare, X, Send } from 'lucide-react'
-import avatar from '../assets/images/avatar.jpg'
+import avatar from '../assets/images/avatar.jpeg'
 
 const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:8000'
 const MESSAGE_MAX = 500

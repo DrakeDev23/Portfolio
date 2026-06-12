@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { Download, ArrowRight, Shield, Code2, ChevronDown } from 'lucide-react'
-import avatarImg from '../assets/images/avatar.jpg'
+import avatarImg from '../assets/images/avatar.jpeg'
 
 const ROLES = [
   'aspiring Cybersecurity Engineer',
