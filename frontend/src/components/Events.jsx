@@ -114,7 +114,6 @@ export default function Events() {
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         <SectionHeader eyebrow="Conference Journey" title="Events & Conferences" />
 
-        {/* Main card */}
         <div
           key={ev.id}
           className="relative rounded-2xl overflow-hidden mb-4"
@@ -140,7 +139,6 @@ export default function Events() {
           />
 
           <div className="relative z-10 p-8 md:p-12 flex flex-col md:flex-row gap-10 items-start">
-            {/* Image */}
             <div
               className="w-full md:w-80 flex-shrink-0 rounded-xl overflow-hidden"
               style={{
@@ -158,7 +156,6 @@ export default function Events() {
               )}
             </div>
 
-            {/* Info */}
             <div className="flex-1 space-y-4">
               <div>
                 <div className="flex items-center gap-2 mb-2">
@@ -177,7 +174,7 @@ export default function Events() {
                         color: isWin ? '#ffd700' : '#d0d0d0',
                       }}
                     >
-                      {isWin ? '🏆 Champion' : '🥈 Runner-Up'}
+                      {isWin ? 'Champion' : 'Runner Up'}
                     </span>
                   )}
                 </div>
@@ -198,7 +195,6 @@ export default function Events() {
             </div>
           </div>
 
-          {/* Dots + arrows */}
           <div className="relative z-10 px-8 md:px-12 pb-8 flex items-center justify-between">
             <div className="flex items-center gap-2">
               {events.map((_, i) => (
@@ -249,7 +245,6 @@ export default function Events() {
           </div>
         </div>
 
-        {/* Thumbnail grid */}
         <div className="grid grid-cols-4 sm:grid-cols-7 gap-3">
           {events.map((e, i) => {
             const c = e.achievement === 'champion' ? '#FFD700' : e.achievement === 'runner-up' ? '#C0C0C0' : ACCENT
