@@ -45,7 +45,6 @@ function validate(f) {
   return e
 }
 
-// ── Styles ─────────────────────────────────────────────────────────────────
 const INPUT_STYLE = {
   width: '100%',
   background: 'rgba(255,255,255,0.03)',
@@ -67,7 +66,6 @@ const ERROR_STYLE = {
   paddingLeft: '4px',
 }
 
-// ── FormInput ──────────────────────────────────────────────────────────────
 function FormInput({ as: Tag = 'input', error, style: extra, ...props }) {
   const [focused, setFocused] = useState(false)
   return (
@@ -92,13 +90,12 @@ function FormInput({ as: Tag = 'input', error, style: extra, ...props }) {
   )
 }
 
-// ── Contact ────────────────────────────────────────────────────────────────
 const EMPTY = { name: '', email: '', subject: '', message: '' }
 
 export default function Contact() {
   const [form, setForm] = useState(EMPTY)
   const [errors, setErrors] = useState({})
-  const [status, setStatus] = useState('idle') // idle | sending | sent | error
+  const [status, setStatus] = useState('idle')
 
   const set = (k) => (e) => {
     setForm((f) => ({ ...f, [k]: e.target.value }))
