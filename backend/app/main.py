@@ -35,7 +35,6 @@ async def limit_body_size(request: Request, call_next):
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
-#dawd
 app.include_router(api_router, prefix="/api")
 
 
