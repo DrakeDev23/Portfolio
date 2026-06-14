@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Code2, Shield } from 'lucide-react'
 import SectionHeader from './SectionHeader'
+import useScrollReveal from '../hooks/useScrollReveal'
 
 const TABS = [
   { key: 'Development', icon: <Code2 size={15} strokeWidth={1.5} />, label: 'Development' },
@@ -10,6 +11,7 @@ const TABS = [
 export default function Skills() {
   const [activeTab, setActiveTab] = useState('Development')
   const [skills, setSkills] = useState({})
+  const [sectionRef, isVisible] = useScrollReveal()
 
   useEffect(() => {
     fetch('http://localhost:8000/api/skills')
@@ -34,7 +36,10 @@ export default function Skills() {
         style={{ background: 'radial-gradient(circle, rgba(122,51,255,0.08) 0%, transparent 70%)' }}
       />
 
-      <div className="max-w-6xl mx-auto px-6 relative z-10">
+      <div
+        ref={sectionRef}
+        className={`max-w-6xl mx-auto px-6 relative z-10 reveal ${isVisible ? 'reveal-visible' : ''}`}
+      >
         <SectionHeader eyebrow="Tech Stack" title="Skills & Tools" />
 
         <div className="flex justify-center mb-10">
@@ -65,8 +70,12 @@ export default function Skills() {
         </div>
 
         <div className="flex flex-wrap justify-center gap-3 max-w-3xl mx-auto">
-          {current.map((skill) => (
-            <span key={skill} className="skill-badge">
+          {current.map((skill, i) => (
+            <span
+              key={skill}
+              className={`skill-badge reveal-scale ${isVisible ? 'reveal-visible' : ''}`}
+              style={{ transitionDelay: `${i * 0.04}s` }}
+            >
               {skill}
             </span>
           ))}

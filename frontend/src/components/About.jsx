@@ -1,6 +1,7 @@
 import { GraduationCap, Dumbbell, Code2, BookOpen, Gamepad2 } from 'lucide-react'
 import SectionHeader from './SectionHeader'
 import GlassCard from './GlassCard'
+import useScrollReveal from '../hooks/useScrollReveal'
 
 const HOBBIES = [
   {
@@ -38,6 +39,8 @@ const COURSES = [
 ]
 
 export default function About() {
+  const [sectionRef, isVisible] = useScrollReveal()
+
   return (
     <section
       id="about"
@@ -49,7 +52,10 @@ export default function About() {
         style={{ background: 'linear-gradient(90deg, transparent, rgba(122,51,255,0.3), transparent)' }}
       />
 
-      <div className="max-w-6xl mx-auto px-6">
+      <div
+        ref={sectionRef}
+        className={`max-w-6xl mx-auto px-6 reveal ${isVisible ? 'reveal-visible' : ''}`}
+      >
         <SectionHeader eyebrow="Who I Am" title="About Me" />
 
         <div className="grid md:grid-cols-2 gap-10 items-start">
@@ -122,20 +128,23 @@ export default function About() {
           <div>
             <p className="section-eyebrow mb-5">When I&apos;m Not Coding</p>
             <div className="grid grid-cols-2 gap-4">
-              {HOBBIES.map(({ icon, label, desc }) => (
-                <GlassCard
+              {HOBBIES.map(({ icon, label, desc }, i) => (
+                <div
                   key={label}
-                  className="group hover:-translate-y-1 hover:border-[rgba(122,51,255,0.3)] transition-all duration-300"
+                  className={`reveal-scale ${isVisible ? 'reveal-visible' : ''}`}
+                  style={{ transitionDelay: `${i * 0.08}s` }}
                 >
-                  <div
-                    className="w-10 h-10 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300"
-                    style={{ background: 'rgba(122,51,255,0.12)', color: '#9b6dff' }}
-                  >
-                    {icon}
-                  </div>
-                  <h4 className="text-white font-semibold text-sm mb-2">{label}</h4>
-                  <p className="text-gray-500 text-xs leading-relaxed">{desc}</p>
-                </GlassCard>
+                  <GlassCard className="group hover:-translate-y-1 hover:border-[rgba(122,51,255,0.3)] transition-all duration-300 h-full">
+                    <div
+                      className="w-10 h-10 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300"
+                      style={{ background: 'rgba(122,51,255,0.12)', color: '#9b6dff' }}
+                    >
+                      {icon}
+                    </div>
+                    <h4 className="text-white font-semibold text-sm mb-2">{label}</h4>
+                    <p className="text-gray-500 text-xs leading-relaxed">{desc}</p>
+                  </GlassCard>
+                </div>
               ))}
             </div>
           </div>

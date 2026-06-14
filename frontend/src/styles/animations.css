@@ -1,0 +1,111 @@
+/* ===== Page load animations (run on visit / refresh) ===== */
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slide-down {
+    from {
+        opacity: 0;
+        transform: translateY(-24px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pop-in {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.animate-load-fade-up {
+    animation: fade-in-up 0.9s ease-out both;
+}
+
+.animate-load-fade {
+    animation: fade-in 1s ease-out both;
+}
+
+.animate-load-slide-down {
+    animation: slide-down 0.7s ease-out both;
+}
+
+.animate-load-pop {
+    animation: pop-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(48px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    will-change: opacity, transform;
+}
+
+.reveal.reveal-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reveal-fade {
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.reveal-fade.reveal-visible {
+    opacity: 1;
+}
+
+.reveal-scale {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal-scale.reveal-visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+    .animate-load-fade-up,
+    .animate-load-fade,
+    .animate-load-slide-down,
+    .animate-load-pop,
+    .reveal,
+    .reveal-fade,
+    .reveal-scale {
+        animation: none !important;
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}

@@ -75,11 +75,12 @@ export default function Hero() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-24 pb-12 sm:pb-16 grid md:grid-cols-2 gap-10 sm:gap-12 md:gap-16 items-center relative z-10 w-full">
         <div className="space-y-6 sm:space-y-8">
           <div
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm font-medium"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm font-medium animate-load-fade-up"
             style={{
               background: 'rgba(122, 51, 255, 0.1)',
               border: '1px solid rgba(122, 51, 255, 0.25)',
               color: '#9b6dff',
+              animationDelay: '0.1s',
             }}
           >
             <span
@@ -90,21 +91,30 @@ export default function Hero() {
           </div>
 
           <div>
-            <p className="text-gray-400 text-base sm:text-lg mb-2 font-light">Hello, I&apos;m</p>
+            <p
+              className="text-gray-400 text-base sm:text-lg mb-2 font-light animate-load-fade-up"
+              style={{ animationDelay: '0.15s' }}
+            >
+              Hello, I&apos;m
+            </p>
             <h1
-              className="font-black leading-none mb-3 sm:mb-4"
+              className="font-black leading-none mb-3 sm:mb-4 animate-load-fade-up"
               style={{
                 fontSize: 'clamp(2.5rem, 12vw, 5.5rem)',
                 background: 'linear-gradient(135deg, #ffffff 0%, #c084fc 50%, #7A33FF 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
+                animationDelay: '0.25s',
               }}
             >
               Drake
             </h1>
 
-            <div className="flex flex-wrap items-center gap-0 min-h-9">
+            <div
+              className="flex flex-wrap items-center gap-0 min-h-9 animate-load-fade-up"
+              style={{ animationDelay: '0.35s' }}
+            >
               <span
                 className="text-lg sm:text-xl md:text-2xl font-semibold break-words"
                 style={{ color: '#9b6dff' }}
@@ -120,12 +130,18 @@ export default function Hero() {
             </div>
           </div>
 
-          <p className="text-gray-400 leading-relaxed max-w-md text-sm sm:text-base">
+          <p
+            className="text-gray-400 leading-relaxed max-w-md text-sm sm:text-base animate-load-fade-up"
+            style={{ animationDelay: '0.45s' }}
+          >
             BSIT student building secure, performant software. I bridge clean frontend
             experiences with hardened backend systems and break things professionally in CTFs.
           </p>
 
-          <div className="flex flex-wrap gap-3 sm:gap-4">
+          <div
+            className="flex flex-wrap gap-3 sm:gap-4 animate-load-fade-up"
+            style={{ animationDelay: '0.55s' }}
+          >
             {[
               { icon: <Code2 size={14} />, label: '19+ technologies' },
               { icon: <Shield size={14} />, label: '8 security tools' },
@@ -145,7 +161,10 @@ export default function Hero() {
             ))}
           </div>
 
-          <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
+          <div
+            className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 animate-load-fade-up"
+            style={{ animationDelay: '0.65s' }}
+          >
             <a href="/cv.pdf" download className="btn-primary justify-center w-full sm:w-auto">
               <Download size={16} />
               Download CV
@@ -160,7 +179,10 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="flex justify-center items-center pt-4 md:pt-0">
+        <div
+          className="flex justify-center items-center pt-4 md:pt-0 animate-load-pop"
+          style={{ animationDelay: '0.3s' }}
+        >
           <div className="relative">
             <div
               className="absolute inset-[-2px] rounded-full"
@@ -245,7 +267,8 @@ export default function Hero() {
 
       <button
         onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-gray-600 hover:text-gray-400 transition-colors"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-gray-600 hover:text-gray-400 transition-colors animate-load-fade"
+        style={{ animationDelay: '1.2s' }}
         aria-label="Scroll to About section"
       >
         <span className="text-xs tracking-widest uppercase font-medium">Scroll</span>

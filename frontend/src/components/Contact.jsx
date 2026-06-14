@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Mail, MapPin, Clock, Send, CheckCircle } from 'lucide-react'
 import SectionHeader from './SectionHeader'
 import GlassCard from './GlassCard'
+import useScrollReveal from '../hooks/useScrollReveal'
 
 const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:8000'
 
@@ -103,6 +104,7 @@ export default function Contact() {
   const [form, setForm] = useState(EMPTY)
   const [errors, setErrors] = useState({})
   const [status, setStatus] = useState('idle')
+  const [sectionRef, isVisible] = useScrollReveal()
 
   const set = (k) => (e) => {
     setForm((f) => ({ ...f, [k]: e.target.value }))
@@ -156,7 +158,10 @@ export default function Contact() {
         style={{ background: 'radial-gradient(circle, rgba(122,51,255,0.08) 0%, transparent 70%)' }}
       />
 
-      <div className="max-w-6xl mx-auto px-6 relative z-10">
+      <div
+        ref={sectionRef}
+        className={`max-w-6xl mx-auto px-6 relative z-10 reveal ${isVisible ? 'reveal-visible' : ''}`}
+      >
         <SectionHeader eyebrow="Reach Out" title="Get in Touch" />
 
         <div className="grid md:grid-cols-2 gap-10">
@@ -166,23 +171,29 @@ export default function Contact() {
               the inbox is open. I&apos;ll get back within a day.
             </p>
             <div className="space-y-4">
-              {INFO_ITEMS.map(({ icon: Icon, label, value }) => (
-                <GlassCard key={label}>
-                  <div className="flex items-center gap-4">
-                    <div
-                      className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-                      style={{ background: 'rgba(122,51,255,0.12)', color: '#9b6dff' }}
-                    >
-                      <Icon size={18} strokeWidth={1.5} />
+              {INFO_ITEMS.map(({ icon: Icon, label, value }, i) => (
+                <div
+                  key={label}
+                  className={`reveal-scale ${isVisible ? 'reveal-visible' : ''}`}
+                  style={{ transitionDelay: `${i * 0.1}s` }}
+                >
+                  <GlassCard>
+                    <div className="flex items-center gap-4">
+                      <div
+                        className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+                        style={{ background: 'rgba(122,51,255,0.12)', color: '#9b6dff' }}
+                      >
+                        <Icon size={18} strokeWidth={1.5} />
+                      </div>
+                      <div>
+                        <p className="section-eyebrow" style={{ fontSize: '10px', letterSpacing: '0.12em' }}>
+                          {label}
+                        </p>
+                        <p className="text-gray-200 text-sm mt-0.5">{value}</p>
+                      </div>
                     </div>
-                    <div>
-                      <p className="section-eyebrow" style={{ fontSize: '10px', letterSpacing: '0.12em' }}>
-                        {label}
-                      </p>
-                      <p className="text-gray-200 text-sm mt-0.5">{value}</p>
-                    </div>
-                  </div>
-                </GlassCard>
+                  </GlassCard>
+                </div>
               ))}
             </div>
           </div>

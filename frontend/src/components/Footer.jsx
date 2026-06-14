@@ -1,4 +1,5 @@
 import { Github, Linkedin, Facebook, Instagram, Terminal } from 'lucide-react'
+import useScrollReveal from '../hooks/useScrollReveal'
 
 const SOCIAL_LINKS = [
   { icon: Github, label: 'GitHub', href: 'https://github.com/DrakeDev23' },
@@ -8,9 +9,12 @@ const SOCIAL_LINKS = [
 ]
 
 export default function Footer() {
+  const [ref, isVisible] = useScrollReveal({ threshold: 0.05 })
+
   return (
     <footer
-      className="relative"
+      ref={ref}
+      className={`relative reveal-fade ${isVisible ? 'reveal-visible' : ''}`}
       style={{
         backgroundColor: '#090514',
         borderTop: '1px solid rgba(122,51,255,0.12)',
@@ -43,8 +47,8 @@ export default function Footer() {
 
         <div className="flex items-center gap-1">
           {SOCIAL_LINKS.map(({ icon: Icon, label, href }) => (
-            <a
-              key={label}
+
+            <a key={label}
               href={href}
               target="_blank"
               rel="noopener noreferrer"
