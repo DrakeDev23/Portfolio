@@ -261,7 +261,7 @@ export default function Events() {
                   transform: i === current ? 'scale(1.03)' : 'scale(1)',
                   boxShadow: i === current ? `0 4px 20px ${c}25` : 'none',
                 }}
-              >
+              >{/*hi*/}
                 <p
                   className="text-xs font-bold truncate"
                   style={{ color: i === current ? 'white' : '#9ca3af' }}
