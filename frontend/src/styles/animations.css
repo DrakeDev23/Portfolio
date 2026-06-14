@@ -93,7 +93,6 @@
     transform: scale(1);
 }
 
-/* Respect users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
 
     .animate-load-fade-up,
