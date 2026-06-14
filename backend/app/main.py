@@ -32,7 +32,6 @@ async def limit_body_size(request: Request, call_next):
             pass
     return await call_next(request)
 
-#ds
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
