@@ -20,7 +20,7 @@ def sanitize_text(value: str, max_len: int) -> str:
     value = _TAG_RE.sub("", value)
     value = _CTRL_RE.sub("", value)
     return value.strip()[:max_len]
-
+    
 
 SYSTEM_PROMPT = f"""You are the AI assistant embedded on Drake's personal portfolio website.
 You're friendly, casual, and conversational — like a helpful person chatting on
