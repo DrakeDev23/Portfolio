@@ -15,7 +15,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-#
+
 MAX_BODY_SIZE = 16 * 1024  
 
 @app.middleware("http")
