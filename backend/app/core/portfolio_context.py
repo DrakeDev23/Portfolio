@@ -1,8 +1,3 @@
-# Edit this file with your real information. This text gets injected into
-# Gemini's system prompt so it knows what it's allowed to talk about.
-#
-# Keep it factual and reasonably concise — every character here is sent
-# on every chat request, so avoid pasting huge blocks of text.
 
 PORTFOLIO_CONTEXT = """
 Name: Drake
