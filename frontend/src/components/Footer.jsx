@@ -7,7 +7,7 @@ const SOCIAL_LINKS = [
   { icon: Facebook, label: 'Facebook', href: 'https://www.facebook.com/stephen.mart.98' },
   { icon: Instagram, label: 'Instagram', href: 'https://www.instagram.com/0_dr4k3/' },
 ]
-{/* fds */ }
+
 export default function Footer() {
   const [ref, isVisible] = useScrollReveal({ threshold: 0.05 })
 
