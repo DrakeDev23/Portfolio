@@ -8,4 +8,3 @@ export default function GlassCard({ children, className = '', style = {} }) {
     </div>
   )
 }
-{/*das */}
