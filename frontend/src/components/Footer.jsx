@@ -72,4 +72,3 @@ export default function Footer() {
     </footer>
   )
 }
-{/*s */}
