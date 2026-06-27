@@ -5,6 +5,7 @@ import GlassCard from './GlassCard'
 import useScrollReveal from '../hooks/useScrollReveal'
 
 const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:8000'
+
 const INFO_ITEMS = [
   { icon: Mail, label: 'Email', value: 'maccogoth@example.com' },
   { icon: MapPin, label: 'Location', value: 'Cebu City, Philippines' },
