@@ -13,6 +13,7 @@ const INITIAL_MESSAGES = [
     text: "Hey! I'm Drake's AI assistant. Ask me anything about his skills, projects, or background.",
   },
 ]
+
 const AVATAR = avatar;
 
 function ChatMessage({ msg }) {
