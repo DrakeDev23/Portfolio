@@ -3,22 +3,14 @@ import { MapPin, Calendar, ChevronLeft, ChevronRight } from 'lucide-react'
 import SectionHeader from './SectionHeader'
 import useScrollReveal from '../hooks/useScrollReveal'
 
-import aiImg from '../assets/images/events/ai.jpeg'
-import capstoneImg from '../assets/images/events/capstone.jpeg'
-import ctfImg from '../assets/images/events/ctf.jpeg'
-import ictImg from '../assets/images/events/ict.jpeg'
-import launchImg from '../assets/images/events/launch.jpeg'
-import networksecImg from '../assets/images/events/networksec.jpeg'
-import webdevImg from '../assets/images/events/webdev.jpeg'
-
 const IMAGE_MAP = {
-  ai: aiImg,
-  capstone: capstoneImg,
-  ctf: ctfImg,
-  ict: ictImg,
-  launch: launchImg,
-  networksec: networksecImg,
-  webdev: webdevImg,
+  ai: "/assets/images/events/ai.jpeg",
+  capstone: "/assets/images/events/capstone.jpeg",
+  ctf: "/assets/images/events/ctf.jpeg",
+  ict: "/assets/images/events/ict.jpeg",
+  launch: "/assets/images/events/launch.jpeg",
+  networksec: "/assets/images/events/networksec.jpeg",
+  webdev: "/assets/images/events/webdev.jpeg",
 }
 
 const ACCENT = '#7A33FF'
@@ -32,7 +24,7 @@ export default function Events() {
   const [sectionRef, isVisible] = useScrollReveal()
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/events')
+    fetch(`${import.meta.env.VITE_API_URL}/api/events`)
       .then((r) => r.json())
       .then((data) => {
         setEvents(data)
@@ -65,7 +57,7 @@ export default function Events() {
   }
 
   const ev = events[current]
-  const evImage = ev ? IMAGE_MAP[ev.id] : null
+  const evImage = ev ? IMAGE_MAP[ev.id?.replace(/\s/g, '').toLowerCase()] : null
   const isWin = ev?.achievement === 'champion'
   const isRunnerUp = ev?.achievement === 'runner-up'
   const accent = isWin ? '#FFD700' : isRunnerUp ? '#C0C0C0' : ACCENT
