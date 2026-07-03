@@ -33,7 +33,7 @@ export default function Projects() {
   const [sectionRef, isVisible] = useScrollReveal()
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/projects')
+    fetch(`${import.meta.env.VITE_API_URL ?? 'http://localhost:8000'}/api/projects`)
       .then((r) => r.json())
       .then((data) => {
         setProjects(data)

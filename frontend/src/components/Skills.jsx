@@ -14,7 +14,7 @@ export default function Skills() {
   const [sectionRef, isVisible] = useScrollReveal()
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/skills')
+    fetch(`${import.meta.env.VITE_API_URL ?? 'http://localhost:8000'}/api/skills`)
       .then((r) => r.json())
       .then((data) => setSkills(data))
   }, [])
