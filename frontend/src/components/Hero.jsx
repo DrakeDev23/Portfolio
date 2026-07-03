@@ -165,7 +165,7 @@ export default function Hero() {
             className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 animate-load-fade-up"
             style={{ animationDelay: '0.65s' }}
           >
-            <a href="/images/cv.pdf" download className="btn-primary justify-center w-full sm:w-auto">
+            <a href="/images/Resume.pdf" download className="btn-primary justify-center w-full sm:w-auto">
               <Download size={16} />
               Download CV
             </a>
