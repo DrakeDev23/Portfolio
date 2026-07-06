@@ -21,18 +21,15 @@ function ChatMessage({ msg }) {
   return (
     <div className={`flex items-end gap-2 ${isUser ? 'flex-row-reverse' : 'flex-row'}`}>
       {!isUser && (
-        <img
-          src={AVATAR}
-          alt="Drake"
-          style={{
-            width: '24px',
-            height: '24px',
-            borderRadius: '50%',
-            objectFit: 'cover',
-            flexShrink: 0,
-            marginBottom: '2px',
-            border: '1px solid rgba(122,51,255,0.3)',
-          }}
+        <img src={AVATAR} alt="Drake" style={{
+          width: '24px',
+          height: '24px',
+          borderRadius: '50%',
+          objectFit: 'cover',
+          flexShrink: 0,
+          marginBottom: '2px',
+          border: '1px solid rgba(122,51,255,0.3)',
+        }}
         />
       )}
       <div
