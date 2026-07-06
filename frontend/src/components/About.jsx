@@ -32,10 +32,8 @@ const FOCUS_BARS = [
 ]
 
 const COURSES = [
-  'full-Stack developer',
-  'CTFs Player',
-  'Programmer',
-  'Mathematics'
+  'BSIT student',
+  '2nd year Student',
 ]
 
 export default function About() {
