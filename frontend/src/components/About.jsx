@@ -40,30 +40,17 @@ export default function About() {
   const [sectionRef, isVisible] = useScrollReveal()
 
   return (
-    <section
-      id="about"
-      className="py-28 relative"
-      style={{ backgroundColor: '#090514' }}
-    >
-      <div
-        className="absolute top-0 left-0 right-0 h-px"
-        style={{ background: 'linear-gradient(90deg, transparent, rgba(122,51,255,0.3), transparent)' }}
-      />
+    <section id="about" className="py-28 relative" style={{ backgroundColor: '#090514' }}>
+      <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(122,51,255,0.3), transparent)' }} />
 
-      <div
-        ref={sectionRef}
-        className={`max-w-6xl mx-auto px-6 reveal ${isVisible ? 'reveal-visible' : ''}`}
-      >
+      <div ref={sectionRef} className={`max-w-6xl mx-auto px-6 reveal ${isVisible ? 'reveal-visible' : ''}`}>
         <SectionHeader eyebrow="Who I Am" title="About Me" />
 
         <div className="grid md:grid-cols-2 gap-10 items-start">
           <div className="space-y-6">
             <GlassCard>
               <div className="flex items-start gap-4">
-                <div
-                  className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5"
-                  style={{ background: 'rgba(122,51,255,0.15)', color: '#9b6dff' }}
-                >
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: 'rgba(122,51,255,0.15)', color: '#9b6dff' }}>
                   <GraduationCap size={20} strokeWidth={1.5} />
                 </div>
                 <div>
@@ -76,15 +63,7 @@ export default function About() {
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {COURSES.map((c) => (
-                      <span
-                        key={c}
-                        className="px-2.5 py-1 rounded-lg text-xs font-medium"
-                        style={{
-                          background: 'rgba(122,51,255,0.08)',
-                          border: '1px solid rgba(122,51,255,0.18)',
-                          color: '#a78bfa',
-                        }}
-                      >
+                      <span key={c} className="px-2.5 py-1 rounded-lg text-xs font-medium" style={{ background: 'rgba(122,51,255,0.08)', border: '1px solid rgba(122,51,255,0.18)', color: '#a78bfa' }}>
                         {c}
                       </span>
                     ))}
@@ -104,18 +83,8 @@ export default function About() {
                         {pct}%
                       </span>
                     </div>
-                    <div
-                      className="h-1.5 rounded-full overflow-hidden"
-                      style={{ background: 'rgba(255,255,255,0.05)' }}
-                    >
-                      <div
-                        className="h-full rounded-full"
-                        style={{
-                          width: `${pct}%`,
-                          background: 'linear-gradient(90deg, #7A33FF, #c084fc)',
-                          boxShadow: '0 0 8px rgba(122,51,255,0.4)',
-                        }}
-                      />
+                    <div className="h-1.5 rounded-full overflow-hidden" style={{ background: 'rgba(255,255,255,0.05)' }}>
+                      <div className="h-full rounded-full" style={{ width: `${pct}%`, background: 'linear-gradient(90deg, #7A33FF, #c084fc)', boxShadow: '0 0 8px rgba(122,51,255,0.4)' }} />
                     </div>
                   </div>
                 ))}
@@ -127,16 +96,9 @@ export default function About() {
             <p className="section-eyebrow mb-5">When I&apos;m Not Coding</p>
             <div className="grid grid-cols-2 gap-4">
               {HOBBIES.map(({ icon, label, desc }, i) => (
-                <div
-                  key={label}
-                  className={`reveal-scale ${isVisible ? 'reveal-visible' : ''}`}
-                  style={{ transitionDelay: `${i * 0.08}s` }}
-                >
+                <div key={label} className={`reveal-scale ${isVisible ? 'reveal-visible' : ''}`} style={{ transitionDelay: `${i * 0.08}s` }}>
                   <GlassCard className="group hover:-translate-y-1 hover:border-[rgba(122,51,255,0.3)] transition-all duration-300 h-full">
-                    <div
-                      className="w-10 h-10 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300"
-                      style={{ background: 'rgba(122,51,255,0.12)', color: '#9b6dff' }}
-                    >
+                    <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300" style={{ background: 'rgba(122,51,255,0.12)', color: '#9b6dff' }}>
                       {icon}
                     </div>
                     <h4 className="text-white font-semibold text-sm mb-2">{label}</h4>
