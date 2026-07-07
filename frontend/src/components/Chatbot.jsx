@@ -105,7 +105,7 @@ function loadSavedMessages() {
       const parsed = JSON.parse(saved)
       if (Array.isArray(parsed) && parsed.length > 0) return parsed
     }
-  } catch { /* ignore corrupt data */ }
+  } catch { }
   return INITIAL_MESSAGES
 }
 
@@ -117,7 +117,6 @@ export default function Chatbot() {
   const bottomRef = useRef(null)
   const inputRef = useRef(null)
 
-  // Persist messages to sessionStorage whenever they change
   useEffect(() => {
     sessionStorage.setItem(STORAGE_KEY, JSON.stringify(messages))
   }, [messages])
