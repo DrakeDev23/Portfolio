@@ -22,7 +22,7 @@ PROJECTS = [
         "title": "My Portfolio",
         "subtitle": "Personal Site",
         "desc": "My personal developer portfolio showcasing projects, skills, and experience. Built with a modern React frontend and a FastAPI backend.",
-        "tags": ["Reactjs", "Tailwindcss", "FastAPI"],
+        "tags": ["Reactjs", "Tailwindcss", "FastAPI", "PostgreSQL"],
         "color": "#7a33ff",
         "image": "/assets/images/projects/me.jpeg",
     },
