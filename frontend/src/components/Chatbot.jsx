@@ -96,13 +96,31 @@ function TypingIndicator() {
   )
 }
 
+const STORAGE_KEY = 'drake_chat_messages'
+
+function loadSavedMessages() {
+  try {
+    const saved = sessionStorage.getItem(STORAGE_KEY)
+    if (saved) {
+      const parsed = JSON.parse(saved)
+      if (Array.isArray(parsed) && parsed.length > 0) return parsed
+    }
+  } catch { /* ignore corrupt data */ }
+  return INITIAL_MESSAGES
+}
+
 export default function Chatbot() {
   const [open, setOpen] = useState(false)
-  const [messages, setMessages] = useState(INITIAL_MESSAGES)
+  const [messages, setMessages] = useState(loadSavedMessages)
   const [input, setInput] = useState('')
   const [typing, setTyping] = useState(false)
   const bottomRef = useRef(null)
   const inputRef = useRef(null)
+
+  // Persist messages to sessionStorage whenever they change
+  useEffect(() => {
+    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(messages))
+  }, [messages])
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })

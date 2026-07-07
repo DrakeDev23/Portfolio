@@ -1,5 +1,22 @@
+def build_portfolio_context(events, projects, skills: dict) -> str:
+    skills_text = "\n".join(
+        f"- {category}: {', '.join(names)}"
+        for category, names in skills.items()
+    )
 
-PORTFOLIO_CONTEXT = """
+    projects_text = "\n".join(
+        f"{i}. {p.title} — {p.desc} Tech: {', '.join(p.tags)}"
+        for i, p in enumerate(projects, start=1)
+    )
+
+    events_text = "\n".join(
+        f"- {e.name} ({e.date}, {e.location}) — {e.role}"
+        + (f", {e.achievement}" if e.achievement else "")
+        + f": {e.desc}"
+        for e in events
+    )
+
+    return f"""
 Name: Drake
 Role: BSIT student, aspiring Cybersecurity Engineer, full-stack developer, CTF player.
 Location: Cebu City, Philippines.
@@ -8,21 +25,17 @@ About:
 - BSIT student building secure, performant software.
 - Bridges clean frontend experiences with hardened backend systems.
 - Plays CTFs (Capture The Flag) competitions for cybersecurity practice.
-- Knows 19+ technologies and has used 8+ security tools (replace with your real list).
 
-Skills (replace with your actual stack):
-- Frontend: React, Tailwind CSS, JavaScript
-- Backend: Python, FastAPI
-- Security: (list tools/frameworks you've used, e.g. Burp Suite, Nmap, Wireshark)
-- Other: Git, Linux
+Skills:
+{skills_text}
 
-Projects (replace with your real projects — name, short description, tech used, link if public):
-1. Project Name — one or two sentence description. Tech: React, FastAPI, etc.
-2. Project Name — one or two sentence description. Tech: ...
-3. Project Name — one or two sentence description. Tech: ...
+Projects:
+{projects_text}
+
+Events & Achievements:
+{events_text}
 
 Contact:
-- Email: maccogoth@example.com
 - Available for: freelance work, internships, collaboration on CTF teams / open source.
 
 Tone: Friendly, concise, first-person-about-Drake (e.g. "Drake built this using..." or

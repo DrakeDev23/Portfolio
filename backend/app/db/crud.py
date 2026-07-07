@@ -1,0 +1,23 @@
+from sqlalchemy import select
+from sqlalchemy.ext.asyncio import AsyncSession
+
+from app.db import models
+
+
+async def get_events(db: AsyncSession):
+    result = await db.execute(select(models.Event))
+    return result.scalars().all()
+
+
+async def get_projects(db: AsyncSession):
+    result = await db.execute(select(models.Project))
+    return result.scalars().all()
+
+
+async def get_skills(db: AsyncSession):
+    result = await db.execute(select(models.Skill))
+    skills = result.scalars().all()
+    grouped: dict[str, list[str]] = {}
+    for s in skills:
+        grouped.setdefault(s.category, []).append(s.name)
+    return grouped

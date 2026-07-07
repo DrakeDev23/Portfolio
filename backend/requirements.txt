@@ -16,3 +16,5 @@ slowapi
 httpx
 pydantic-settings
 email-validator
+sqlalchemy[asyncio]
+asyncpg
