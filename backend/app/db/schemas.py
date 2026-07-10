@@ -23,6 +23,7 @@ class ProjectSchema(BaseModel):
     tags: list[str]
     color: str
     image: str
+    likes: int
 
     class Config:
         from_attributes = True

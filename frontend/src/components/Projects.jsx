@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Heart } from 'lucide-react'
 import SectionHeader from './SectionHeader'
 import useScrollReveal from '../hooks/useScrollReveal'
 
@@ -24,16 +24,28 @@ const IMAGE_MAP = {
 }
 
 const INTERVAL = 4500
+const LIKED_KEY = 'likedProjects'
+
+const getLikedSet = () => {
+  try {
+    return new Set(JSON.parse(localStorage.getItem(LIKED_KEY)) || [])
+  } catch {
+    return new Set()
+  }
+}
 
 export default function Projects() {
   const [projects, setProjects] = useState([])
   const [loading, setLoading] = useState(true)
   const [current, setCurrent] = useState(0)
+  const [likedIds, setLikedIds] = useState(getLikedSet)
   const intervalRef = useRef(null)
   const [sectionRef, isVisible] = useScrollReveal()
 
+  const apiUrl = import.meta.env.VITE_API_URL ?? 'http://localhost:8000'
+
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL ?? 'http://localhost:8000'}/api/projects`)
+    fetch(`${apiUrl}/api/projects`)
       .then((r) => r.json())
       .then((data) => {
         setProjects(data)
@@ -65,8 +77,39 @@ export default function Projects() {
     resetTimer()
   }
 
+  const handleLike = async (projectId) => {
+    if (likedIds.has(projectId)) return
+
+    const nextLiked = new Set(likedIds)
+    nextLiked.add(projectId)
+    setLikedIds(nextLiked)
+    localStorage.setItem(LIKED_KEY, JSON.stringify([...nextLiked]))
+
+    setProjects((prev) =>
+      prev.map((p) => p.id === projectId ? { ...p, likes: Number(p.likes ?? 0) + 1 } : p)
+    )
+    try {
+      const res = await fetch(`${apiUrl}/api/projects/${projectId}/like`, {
+        method: 'PATCH',
+      })
+      if (!res.ok) throw new Error('Like request failed')
+      const updated = await res.json()
+      setProjects((prev) =>
+        prev.map((p) => (p.id === projectId ? { ...p, likes: updated.likes } : p))
+      )
+    } catch {
+      nextLiked.delete(projectId)
+      setLikedIds(nextLiked)
+      localStorage.setItem(LIKED_KEY, JSON.stringify([...nextLiked]))
+      setProjects((prev) =>
+        prev.map((p) => (p.id === projectId ? { ...p, likes: p.likes - 1 } : p))
+      )
+    }
+  }
+
   const proj = projects[current]
   const projImage = proj ? IMAGE_MAP[proj.id] : null
+  const isLiked = proj && likedIds.has(proj.id)
 
   return (
     <section
@@ -131,6 +174,24 @@ export default function Projects() {
                   transform: 'translate(-30%, 30%)',
                 }}
               />
+
+              <button
+                onClick={() => handleLike(proj.id)}
+                aria-label={isLiked ? 'Liked' : 'Like this project'}
+                className="absolute top-6 right-6 z-20 flex items-center gap-1.5 rounded-full px-3 py-1.5 transition-all duration-200"
+                style={{
+                  background: 'rgba(255,255,255,0.07)',
+                  border: '1px solid rgba(255,255,255,0.1)',
+                  cursor: isLiked ? 'default' : 'pointer',
+                }}
+              >
+                <Heart
+                  size={16}
+                  color={isLiked ? proj.color : 'white'}
+                  fill={isLiked ? proj.color : 'none'}
+                />
+                <span className="text-xs font-mono text-white">{proj.likes}</span>
+              </button>
 
               <div className="relative z-10 p-8 md:p-12 flex flex-col md:flex-row gap-10 items-start">
                 <div

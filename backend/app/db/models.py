@@ -1,6 +1,6 @@
 from typing import Optional
 
-from sqlalchemy import String, Text
+from sqlalchemy import String, Text, Integer
 from sqlalchemy.dialects.postgresql import ARRAY
 from sqlalchemy.orm import Mapped, mapped_column
 
@@ -29,6 +29,7 @@ class Project(Base):
     tags: Mapped[list[str]] = mapped_column(ARRAY(String), nullable=False)
     color: Mapped[str] = mapped_column(String, nullable=False)
     image: Mapped[str] = mapped_column(String, nullable=False)
+    likes: Mapped[int] = mapped_column(Integer, nullable=False, default=0, server_default="0")
 
 
 class Skill(Base):
