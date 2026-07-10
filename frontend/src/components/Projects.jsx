@@ -39,6 +39,7 @@ export default function Projects() {
   const [loading, setLoading] = useState(true)
   const [current, setCurrent] = useState(0)
   const [likedIds, setLikedIds] = useState(getLikedSet)
+  const [justLiked, setJustLiked] = useState(false)
   const intervalRef = useRef(null)
   const [sectionRef, isVisible] = useScrollReveal()
 
@@ -85,6 +86,9 @@ export default function Projects() {
     setLikedIds(nextLiked)
     localStorage.setItem(LIKED_KEY, JSON.stringify([...nextLiked]))
 
+    setJustLiked(true)
+    setTimeout(() => setJustLiked(false), 600)
+
     setProjects((prev) =>
       prev.map((p) => p.id === projectId ? { ...p, likes: Number(p.likes ?? 0) + 1 } : p)
     )
@@ -104,6 +108,7 @@ export default function Projects() {
       setProjects((prev) =>
         prev.map((p) => (p.id === projectId ? { ...p, likes: p.likes - 1 } : p))
       )
+      setJustLiked(false)
     }
   }
 
@@ -114,7 +119,7 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="py-28 relative"
+      className="py-16 sm:py-28 relative"
       style={{ backgroundColor: '#090514' }}
     >
       <div
@@ -128,7 +133,7 @@ export default function Projects() {
 
       <div
         ref={sectionRef}
-        className={`max-w-6xl mx-auto px-6 relative z-10 reveal ${isVisible ? 'reveal-visible' : ''}`}
+        className={`max-w-6xl mx-auto px-4 sm:px-6 relative z-10 reveal ${isVisible ? 'reveal-visible' : ''}`}
       >
         <SectionHeader eyebrow="My Work" title="Featured Projects" />
 
@@ -136,7 +141,7 @@ export default function Projects() {
           <div
             className="rounded-2xl flex items-center justify-center"
             style={{
-              minHeight: '340px',
+              minHeight: '280px',
               background: 'rgba(122,51,255,0.05)',
               border: '1px solid rgba(122,51,255,0.12)',
             }}
@@ -153,11 +158,10 @@ export default function Projects() {
           <>
             <div
               key={proj.id}
-              className="relative rounded-2xl overflow-hidden mb-4"
+              className="relative rounded-2xl overflow-hidden mb-3 sm:mb-4"
               style={{
                 background: `linear-gradient(135deg, ${proj.color}18, ${proj.color}08, #130e2a)`,
                 border: `1px solid ${proj.color}30`,
-                minHeight: '340px',
               }}
             >
               <div
@@ -175,25 +179,7 @@ export default function Projects() {
                 }}
               />
 
-              <button
-                onClick={() => handleLike(proj.id)}
-                aria-label={isLiked ? 'Liked' : 'Like this project'}
-                className="absolute top-6 right-6 z-20 flex items-center gap-1.5 rounded-full px-3 py-1.5 transition-all duration-200"
-                style={{
-                  background: 'rgba(255,255,255,0.07)',
-                  border: '1px solid rgba(255,255,255,0.1)',
-                  cursor: isLiked ? 'default' : 'pointer',
-                }}
-              >
-                <Heart
-                  size={16}
-                  color={isLiked ? proj.color : 'white'}
-                  fill={isLiked ? proj.color : 'none'}
-                />
-                <span className="text-xs font-mono text-white">{proj.likes}</span>
-              </button>
-
-              <div className="relative z-10 p-8 md:p-12 flex flex-col md:flex-row gap-10 items-start">
+              <div className="relative z-10 p-5 sm:p-8 md:p-12 flex flex-col md:flex-row gap-5 sm:gap-10 items-start">
                 <div
                   className="w-full md:w-80 flex-shrink-0 rounded-xl overflow-hidden"
                   style={{
@@ -211,7 +197,7 @@ export default function Projects() {
                   )}
                 </div>
 
-                <div className="flex-1 space-y-4">
+                <div className="flex-1 space-y-4 w-full">
                   <div>
                     <p
                       className="text-xs font-semibold uppercase tracking-widest mb-2"
@@ -219,15 +205,51 @@ export default function Projects() {
                     >
                       {proj.subtitle}
                     </p>
-                    <h3 className="text-white text-3xl font-black mb-3">{proj.title}</h3>
-                    <p className="text-gray-400 leading-relaxed">{proj.desc}</p>
+                    <div className="flex items-start justify-between gap-3">
+                      <h3 className="text-white text-2xl sm:text-3xl font-black">{proj.title}</h3>
+                      <button
+                        onClick={() => handleLike(proj.id)}
+                        aria-label={isLiked ? 'Liked' : 'Like this project'}
+                        className="flex-shrink-0 flex items-center gap-1.5 rounded-full px-3 py-1.5 transition-all duration-300"
+                        style={{
+                          background: isLiked
+                            ? `${proj.color}20`
+                            : 'rgba(255,255,255,0.07)',
+                          border: isLiked
+                            ? `1px solid ${proj.color}50`
+                            : '1px solid rgba(255,255,255,0.1)',
+                          cursor: isLiked ? 'default' : 'pointer',
+                          transform: justLiked ? 'scale(1.15)' : 'scale(1)',
+                        }}
+                      >
+                        <Heart
+                          size={14}
+                          color={isLiked ? proj.color : 'rgba(255,255,255,0.6)'}
+                          fill={isLiked ? proj.color : 'none'}
+                          style={{
+                            transition: 'all 0.3s ease',
+                            filter: isLiked ? `drop-shadow(0 0 6px ${proj.color}80)` : 'none',
+                          }}
+                        />
+                        <span
+                          className="text-xs font-mono"
+                          style={{
+                            color: isLiked ? proj.color : 'rgba(255,255,255,0.6)',
+                            transition: 'color 0.3s ease',
+                          }}
+                        >
+                          {proj.likes}
+                        </span>
+                      </button>
+                    </div>
+                    <p className="text-gray-400 leading-relaxed text-sm sm:text-base mt-3">{proj.desc}</p>
                   </div>
 
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2">
                     {proj.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-3 py-1 rounded-lg text-xs font-mono font-medium"
+                        className="px-2 sm:px-3 py-1 rounded-lg text-xs font-mono font-medium"
                         style={{
                           background: `${proj.color}15`,
                           border: `1px solid ${proj.color}25`,
@@ -241,8 +263,8 @@ export default function Projects() {
                 </div>
               </div>
 
-              <div className="relative z-10 px-8 md:px-12 pb-8 flex items-center justify-between">
-                <div className="flex items-center gap-2">
+              <div className="relative z-10 px-5 sm:px-8 md:px-12 pb-5 sm:pb-8 flex items-center justify-between">
+                <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
                   {projects.map((_, i) => (
                     <button
                       key={i}
@@ -250,8 +272,8 @@ export default function Projects() {
                       aria-label={`Go to project ${i + 1}`}
                       className="rounded-full transition-all duration-300"
                       style={{
-                        width: i === current ? '24px' : '8px',
-                        height: '8px',
+                        width: i === current ? '20px' : '6px',
+                        height: '6px',
                         background: i === current ? proj.color : 'rgba(255,255,255,0.2)',
                       }}
                     />
@@ -262,7 +284,7 @@ export default function Projects() {
                   <button
                     onClick={() => go(-1)}
                     aria-label="Previous project"
-                    className="w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-200"
+                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center transition-all duration-200"
                     style={{
                       background: 'rgba(255,255,255,0.07)',
                       border: '1px solid rgba(255,255,255,0.1)',
@@ -271,12 +293,12 @@ export default function Projects() {
                     onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(255,255,255,0.12)')}
                     onMouseLeave={(e) => (e.currentTarget.style.background = 'rgba(255,255,255,0.07)')}
                   >
-                    <ChevronLeft size={18} />
+                    <ChevronLeft size={16} />
                   </button>
                   <button
                     onClick={() => go(1)}
                     aria-label="Next project"
-                    className="w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-200"
+                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center transition-all duration-200"
                     style={{
                       background: 'rgba(255,255,255,0.07)',
                       border: '1px solid rgba(255,255,255,0.1)',
@@ -285,13 +307,13 @@ export default function Projects() {
                     onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(255,255,255,0.12)')}
                     onMouseLeave={(e) => (e.currentTarget.style.background = 'rgba(255,255,255,0.07)')}
                   >
-                    <ChevronRight size={18} />
+                    <ChevronRight size={16} />
                   </button>
                 </div>
               </div>
             </div>
 
-            <div className="grid grid-cols-4 sm:grid-cols-8 gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2 sm:gap-3">
               {projects.map((p, i) => (
                 <button
                   key={p.id}
