@@ -7,6 +7,7 @@ const ROLES = [
   'Programmer',
   'CTF Player',
   'Full-Stack Developer',
+  'Co-Founder'
 ]
 
 export default function Hero() {
