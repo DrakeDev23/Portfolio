@@ -155,6 +155,18 @@ export default function Chatbot() {
         body: JSON.stringify({ message: q, history }),
       })
 
+      if (res.status === 429) {
+        setMessages((m) => [
+          ...m,
+          {
+            id: Date.now() + 1,
+            role: 'bot',
+            text: "Whoa, slow down a bit! You're sending messages too fast. Please try again in a minute.",
+          },
+        ])
+        return
+      }
+
       if (!res.ok) throw new Error(`Server error: ${res.status}`)
 
       const data = await res.json()
