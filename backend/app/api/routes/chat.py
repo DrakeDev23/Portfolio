@@ -124,7 +124,6 @@ async def chat(request: Request, payload: ChatRequest, db: AsyncSession = Depend
     messages.append({"role": "user", "content": payload.message})
 
     body = {
-        "model": settings.GROQ_MODEL,
         "messages": messages,
         "max_tokens": 256,
         "temperature": 0.6,
@@ -135,17 +134,32 @@ async def chat(request: Request, payload: ChatRequest, db: AsyncSession = Depend
         "Content-Type": "application/json",
     }
 
-    try:
-        async with httpx.AsyncClient(timeout=15) as client:
-            resp = await client.post(GROQ_URL, json=body, headers=headers)
-    except httpx.TimeoutException:
-        raise HTTPException(status_code=504, detail="AI service timed out.")
-    except httpx.HTTPError:
-        raise HTTPException(status_code=502, detail="Failed to reach AI service.")
+    models_to_try = [settings.GROQ_MODEL]
+    if "llama-3.1-8b-instant" not in models_to_try:
+        models_to_try.append("llama-3.1-8b-instant")
+        
+    resp = None
+    for model in models_to_try:
+        body["model"] = model
+        try:
+            async with httpx.AsyncClient(timeout=15) as client:
+                resp = await client.post(GROQ_URL, json=body, headers=headers)
+            if resp.status_code == 200:
+                break
+        except (httpx.TimeoutException, httpx.HTTPError) as e:
+            print(f"Exception calling Groq with {model}: {e}")
+            resp = None
+
+    if resp is None:
+        return {"reply": "Sorry, my brain took too long to respond. Could you try asking again?"}
+
+    if resp.status_code == 429:
+        print(f"Groq rate limit: status=429 body={resp.text[:500]}")
+        return {"reply": "I'm getting a little overwhelmed with questions right now! Please give me a minute to catch my breath."}
 
     if resp.status_code != 200:
         print(f"Groq error: status={resp.status_code} body={resp.text[:500]}")
-        raise HTTPException(status_code=502, detail="Failed to get a response from the AI.")
+        return {"reply": "Sorry, I couldn't reach my brain just now. Please try again in a bit."}
 
     data = resp.json()
 
