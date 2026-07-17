@@ -54,8 +54,8 @@ export default function Hero() {
         <img
           src={avatarImg}
           alt=""
-          className="h-full w-full md:w-1/2 object-cover opacity-30 md:opacity-50 mix-blend-luminosity md:mix-blend-normal"
-          style={{ objectPosition: 'center 80%' }}
+          className="h-full w-full md:w-1/2 object-cover opacity-15 md:opacity-[0.18] brightness-50 animate-load-fade"
+          style={{ objectPosition: 'center 80%', animationDelay: '0.2s' }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#090514] via-[#090514] md:via-[#090514]/70 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#090514] via-transparent to-[#090514]/40" />
