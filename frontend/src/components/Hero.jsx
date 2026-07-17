@@ -50,7 +50,18 @@ export default function Hero() {
       className="relative min-h-screen flex items-center overflow-x-hidden"
       style={{ backgroundColor: '#090514' }}
     >
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      <div className="absolute inset-0 z-0 flex justify-end">
+        <img
+          src={avatarImg}
+          alt=""
+          className="h-full w-full md:w-1/2 object-cover opacity-30 md:opacity-50 mix-blend-luminosity md:mix-blend-normal"
+          style={{ objectPosition: 'center 80%' }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#090514] via-[#090514] md:via-[#090514]/70 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#090514] via-transparent to-[#090514]/40" />
+      </div>
+
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
         <div
           className="absolute w-[600px] h-[600px] rounded-full"
           style={{
@@ -73,8 +84,8 @@ export default function Hero() {
         />
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-24 pb-12 sm:pb-16 grid md:grid-cols-2 gap-10 sm:gap-12 md:gap-16 items-center relative z-10 w-full">
-        <div className="space-y-6 sm:space-y-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-24 pb-12 sm:pb-16 flex items-center relative z-10 w-full">
+        <div className="space-y-6 sm:space-y-8 max-w-2xl relative z-10">
           <div
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm font-medium animate-load-fade-up"
             style={{
@@ -177,91 +188,6 @@ export default function Hero() {
               Get in Touch
               <ArrowRight size={16} />
             </button>
-          </div>
-        </div>
-
-        <div
-          className="flex justify-center items-center pt-4 md:pt-0 animate-load-pop"
-          style={{ animationDelay: '0.3s' }}
-        >
-          <div className="relative">
-            <div
-              className="absolute inset-[-2px] rounded-full"
-              style={{
-                background: 'linear-gradient(135deg, #7A33FF, #c084fc, #7A33FF)',
-                backgroundSize: '200%',
-                animation: 'gradient-shift 4s ease infinite',
-                padding: '2px',
-                borderRadius: '50%',
-              }}
-            />
-
-            <div
-              className="absolute inset-[-12px] sm:inset-[-20px] rounded-full border border-[rgba(122,51,255,0.2)] animate-spin-slow"
-            >
-              <div
-                className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full"
-                style={{
-                  background: '#7A33FF',
-                  boxShadow: '0 0 12px rgba(122,51,255,0.8)',
-                }}
-              />
-            </div>
-
-            <div
-              className="absolute inset-[-24px] sm:inset-[-40px] rounded-full border border-[rgba(155,109,255,0.1)]"
-              style={{
-                animation: 'spin 22s linear infinite reverse',
-              }}
-            >
-              <div
-                className="absolute bottom-0 right-1/4 w-2 h-2 rounded-full"
-                style={{
-                  background: '#c084fc',
-                  boxShadow: '0 0 8px rgba(192,132,252,0.6)',
-                }}
-              />
-            </div>
-
-            <div
-              className="relative w-40 h-40 sm:w-60 sm:h-60 md:w-72 md:h-72 rounded-full overflow-hidden"
-              style={{
-                border: '2px solid rgba(122,51,255,0.4)',
-                boxShadow: '0 0 60px rgba(122,51,255,0.2), inset 0 0 40px rgba(122,51,255,0.05)',
-              }}
-            >
-              <img
-                src={avatarImg}
-                alt="Drake — Web Developer & Cybersecurity Practitioner"
-                className="w-full h-full object-cover"
-                onError={(e) => {
-                  e.target.style.display = 'none'
-                  e.target.parentNode.style.background = 'linear-gradient(135deg, #130e2a, #1e1045)'
-                  const placeholder = document.createElement('div')
-                  placeholder.style.cssText = 'width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;'
-                  placeholder.innerHTML = `
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(155,109,255,0.5)" stroke-width="1.5">
-                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                      <circle cx="12" cy="7" r="4"/>
-                    </svg>
-                    <span style="font-size:11px;color:rgba(155,109,255,0.4);font-family:monospace">avatar.jpg</span>
-                  `
-                  e.target.parentNode.appendChild(placeholder)
-                }}
-              />
-            </div>
-
-            <div
-              className="absolute -bottom-4 left-1/2 -translate-x-1/2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-[10px] sm:text-xs font-semibold whitespace-nowrap"
-              style={{
-                background: 'rgba(9, 5, 20, 0.95)',
-                border: '1px solid rgba(122,51,255,0.35)',
-                color: '#a78bfa',
-                backdropFilter: 'blur(12px)',
-              }}
-            >
-              BSIT · Cebu, PH
-            </div>
           </div>
         </div>
       </div>
