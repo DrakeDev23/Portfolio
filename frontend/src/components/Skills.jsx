@@ -5,7 +5,7 @@ import useScrollReveal from '../hooks/useScrollReveal'
 
 const TABS = [
   { key: 'Development', icon: <Code2 size={15} strokeWidth={1.5} />, label: 'Development' },
-  { key: 'Cybersecurity', icon: <Shield size={15} strokeWidth={1.5} />, label: 'Cybersecurity' },
+  { key: 'Cybersecurity', icon: <Shield size={15} strokeWidth={1.5} />, label: 'Pentest tools' },
 ]
 
 export default function Skills() {
