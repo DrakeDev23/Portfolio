@@ -4,7 +4,7 @@ SKILLS = {
         "HTML", "CSS", "React.js", "Tailwind CSS", "Vue.js",
         "Bootstrap", "ASP.NET", "PHP", "MySQL", "PostgreSQL",
         "FastAPI", "SQLite", "Firebase", "Docker", "AWS", "Git",
-        "Postman", "GitHub", "Linux", "Bash",
+        "Postman", "GitHub", "Linux", "Bash", "TypeScript",
     ],
     "Cybersecurity": [
         "Nmap", "Burp Suite", "Wireshark", "Hydra",
