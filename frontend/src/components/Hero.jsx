@@ -156,7 +156,7 @@ export default function Hero() {
           >
             {[
               { icon: <Code2 size={14} />, label: '27+ technologies' },
-              { icon: <Shield size={14} />, label: '8 security tools' },
+              { icon: <Shield size={14} />, label: '9 security tools' },
             ].map(({ icon, label }) => (
               <div
                 key={label}
