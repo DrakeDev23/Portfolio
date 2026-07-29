@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import { ChevronLeft, ChevronRight, Heart } from 'lucide-react'
 import SectionHeader from './SectionHeader'
 import useScrollReveal from '../hooks/useScrollReveal'
+import { usePortfolioData } from '../context/PortfolioContext'
 
 import awsImg from '../assets/images/projects/aws.jpeg'
 import beautyImg from '../assets/images/projects/beauty.jpeg'
@@ -35,8 +36,9 @@ const getLikedSet = () => {
 }
 
 export default function Projects() {
-  const [projects, setProjects] = useState([])
-  const [loading, setLoading] = useState(true)
+  const prefetched = usePortfolioData()
+  const [projects, setProjects] = useState(prefetched?.projects ?? [])
+  const [loading, setLoading] = useState(!prefetched?.projects)
   const [current, setCurrent] = useState(0)
   const [likedIds, setLikedIds] = useState(getLikedSet)
   const [justLiked, setJustLiked] = useState(false)
@@ -46,6 +48,12 @@ export default function Projects() {
   const apiUrl = import.meta.env.VITE_API_URL ?? 'http://localhost:8000'
 
   useEffect(() => {
+    if (prefetched?.projects) {
+      setProjects(prefetched.projects)
+      setLoading(false)
+      return
+    }
+
     fetch(`${apiUrl}/api/projects`)
       .then((r) => r.json())
       .then((data) => {
@@ -53,7 +61,7 @@ export default function Projects() {
         setLoading(false)
       })
       .catch(() => setLoading(false))
-  }, [])
+  }, [prefetched?.projects])
 
   const resetTimer = useCallback(() => {
     clearInterval(intervalRef.current)

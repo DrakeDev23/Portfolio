@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Code2, Shield } from 'lucide-react'
 import SectionHeader from './SectionHeader'
 import useScrollReveal from '../hooks/useScrollReveal'
+import { usePortfolioData } from '../context/PortfolioContext'
 
 const TABS = [
   { key: 'Development', icon: <Code2 size={15} strokeWidth={1.5} />, label: 'Development' },
@@ -9,15 +10,21 @@ const TABS = [
 ]
 
 export default function Skills() {
+  const prefetched = usePortfolioData()
   const [activeTab, setActiveTab] = useState('Development')
-  const [skills, setSkills] = useState({})
+  const [skills, setSkills] = useState(prefetched?.skills ?? {})
   const [sectionRef, isVisible] = useScrollReveal()
 
   useEffect(() => {
+    if (prefetched?.skills) {
+      setSkills(prefetched.skills)
+      return
+    }
+
     fetch(`${import.meta.env.VITE_API_URL ?? 'http://localhost:8000'}/api/skills`)
       .then((r) => r.json())
       .then((data) => setSkills(data))
-  }, [])
+  }, [prefetched?.skills])
 
   const current = skills[activeTab] || []
 

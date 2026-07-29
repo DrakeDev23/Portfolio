@@ -6,7 +6,15 @@ export default {
   ],
   theme: {
     extend: {
-      colors: {
+        colors: {
+        boot: {
+          deep: '#030014',
+          gradient: '#120024',
+          violet: '#2D0B59',
+          neon: '#A855F7',
+          glow: '#C084FC',
+          success: '#22C55E',
+        },
         bg: {
           base: '#090514',
           surface: '#0f0c22',

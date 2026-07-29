@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import { MapPin, Calendar, ChevronLeft, ChevronRight } from 'lucide-react'
 import SectionHeader from './SectionHeader'
 import useScrollReveal from '../hooks/useScrollReveal'
+import { usePortfolioData } from '../context/PortfolioContext'
 
 const IMAGE_MAP = {
   ai: "/assets/images/events/ai.jpeg",
@@ -17,13 +18,20 @@ const ACCENT = '#7A33FF'
 const INTERVAL = 4500
 
 export default function Events() {
-  const [events, setEvents] = useState([])
-  const [loading, setLoading] = useState(true)
+  const prefetched = usePortfolioData()
+  const [events, setEvents] = useState(prefetched?.events ?? [])
+  const [loading, setLoading] = useState(!prefetched?.events)
   const [current, setCurrent] = useState(0)
   const intervalRef = useRef(null)
   const [sectionRef, isVisible] = useScrollReveal()
 
   useEffect(() => {
+    if (prefetched?.events) {
+      setEvents(prefetched.events)
+      setLoading(false)
+      return
+    }
+
     fetch(`${import.meta.env.VITE_API_URL}/api/events`)
       .then((r) => r.json())
       .then((data) => {
@@ -31,7 +39,7 @@ export default function Events() {
         setLoading(false)
       })
       .catch(() => setLoading(false))
-  }, [])
+  }, [prefetched?.events])
 
   const resetTimer = useCallback(() => {
     clearInterval(intervalRef.current)
