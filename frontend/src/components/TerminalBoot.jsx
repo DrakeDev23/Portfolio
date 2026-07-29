@@ -22,24 +22,24 @@ function BootLine({ type, message }) {
 export default function TerminalBoot({ logs }) {
   return (
     <div
-      className="w-full max-w-lg rounded-xl overflow-hidden"
+      className="w-full max-w-lg overflow-hidden"
       style={{
-        background: 'rgba(255,255,255,0.04)',
-        border: '1px solid rgba(168,85,247,0.2)',
-        backdropFilter: 'blur(16px)',
-        boxShadow: '0 0 40px rgba(168,85,247,0.08)',
+        background: '#0d0f12',
+        border: '1px solid #2a2e34',
       }}
     >
       <div
-        className="flex items-center gap-2 px-4 py-2.5 border-b"
-        style={{ borderColor: 'rgba(168,85,247,0.12)' }}
+        className="flex items-center justify-between px-3 py-1.5 border-b"
+        style={{ background: '#1a1d21', borderColor: '#2a2e34' }}
       >
-        <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
-        <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
-        <span className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
-        <span className="ml-2 font-mono text-[10px] text-gray-500 tracking-wider">
-          drake@archlinux — boot.log
+        <span className="font-mono text-[10px] text-gray-400 tracking-wide">
+          drake@archlinux:~$ boot.log
         </span>
+        <div className="flex items-center gap-3 font-mono text-[11px] text-gray-500">
+          <span className="hover:text-gray-300 cursor-pointer">_</span>
+          <span className="hover:text-gray-300 cursor-pointer">□</span>
+          <span className="hover:text-red-400 cursor-pointer">×</span>
+        </div>
       </div>
 
       <div className="px-4 py-3 space-y-1 max-h-44 overflow-y-auto">

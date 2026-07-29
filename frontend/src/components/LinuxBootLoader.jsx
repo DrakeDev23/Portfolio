@@ -77,15 +77,9 @@ export default function LinuxBootLoader({ onComplete }) {
         <CyberLoader progress={progress} expanded={isReady} />
 
         <div className="text-center space-y-2">
-          <motion.h1
-            className="font-mono font-bold text-xl sm:text-2xl tracking-widest"
-            style={{ color: '#C084FC', textShadow: '0 0 20px rgba(168,85,247,0.5)' }}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-          >
-            DRAKE@ARCHLINUX
-          </motion.h1>
+        <motion.h1 className="font-mono font-bold text-xl sm:text-2xl tracking-widest" style={{ color: '#22C55E' }} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}transition={{ delay: 0.2 }}>
+          DRAKE@ARCHLINUX
+        </motion.h1>
 
           <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 font-mono text-[10px] sm:text-xs text-gray-500">
             {SYS_INFO.map(({ label, value }) => (
