@@ -1,0 +1,4 @@
+cat postcss.config.cjs
+cat tailwind.config.cjs
+cat vite.config.js
+cat package.json
