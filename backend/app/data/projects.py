@@ -46,9 +46,9 @@ PROJECTS = [
     },
     {
         "id": "realestate",
-        "title": "Haven",
+        "title": "Haven (AI real estate)",
         "subtitle": "Capstone Project",
-        "desc": "A property listing and management web app with search, filters, and a server-side backend powered by ASP.NET and SQLite.",
+        "desc": "A AI property listing and management web app with search, filters, and a server-side backend powered by ASP.NET and SQLite.",
         "tags": ["HTML", "CSS", "ASP.NET", "JavaScript", "SQLite"],
         "color": "#3b82f6",
         "image": "/assets/images/projects/realestate.jpeg",
