@@ -12,6 +12,7 @@ const IMAGE_MAP = {
   launch: "/assets/images/events/launch.jpeg",
   networksec: "/assets/images/events/networksec.jpeg",
   webdev: "/assets/images/events/webdev.jpeg",
+  devcon: "/assets/images/events/devcon.jpeg",
 }
 
 const ACCENT = '#7A33FF'

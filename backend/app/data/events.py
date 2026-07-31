@@ -62,4 +62,13 @@ EVENTS = [
         "achievement": None,
         "desc": "Joined a network security seminar covering modern threat landscapes, ethical hacking fundamentals, and best practices for securing systems and infrastructure.",
     },
+    {
+        "id": "devcon",
+        "name": "Cyber Governance",
+        "location": "DICT Mandaue",
+        "date": "July 25, 2026",
+        "role": "Attendee",
+        "achievement": None,
+        "desc": "Joined a cyber governance seminar covering modern threat landscapes, ethical hacking fundamentals, and best practices for securing systems and infrastructure.",
+    }
 ]
