@@ -54,25 +54,6 @@ export default function LinuxBootLoader({ onComplete }) {
         }}
       />
 
-      {[...Array(12)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute w-1 h-1 rounded-full bg-[#A855F7]"
-          style={{
-            top: `${10 + (i * 7) % 80}%`,
-            left: `${5 + (i * 13) % 90}%`,
-            opacity: 0.2 + (i % 3) * 0.15,
-          }}
-          animate={{ y: [0, -20, 0], opacity: [0.15, 0.4, 0.15] }}
-          transition={{
-            duration: 3 + (i % 4),
-            repeat: Infinity,
-            delay: i * 0.3,
-            ease: 'easeInOut',
-          }}
-        />
-      ))}
-
       <div className="relative z-10 flex flex-col items-center gap-6 w-full max-w-xl">
         <CyberLoader progress={progress} expanded={isReady} />
 
