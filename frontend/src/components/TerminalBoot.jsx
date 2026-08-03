@@ -33,7 +33,7 @@ export default function TerminalBoot({ logs }) {
         style={{ background: '#1a1d21', borderColor: '#2a2e34' }}
       >
         <span className="font-mono text-[10px] text-gray-400 tracking-wide">
-          drake@archlinux:~$ root.log
+          drake@archlinux:~$ boot.log
         </span>
         <div className="flex items-center gap-3 font-mono text-[11px] text-gray-500">
           <span className="hover:text-gray-300 cursor-pointer">_</span>
