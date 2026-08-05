@@ -36,6 +36,7 @@ const FOCUS_BARS = [
 const COURSES = [
   'BSIT student',
   '2nd year Student',
+  'AWS membership Officer'
 ]
 
 export default function About() {
@@ -61,7 +62,7 @@ export default function About() {
                     Bachelor of Science in Information Technology
                   </h3>
                   <p className="text-gray-500 text-sm mb-4">
-                    Currently enrolled · Cebu, Philippines
+                    Currently enrolled · Cebu Eastern College
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {COURSES.map((c) => (
