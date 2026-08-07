@@ -12,6 +12,7 @@ import publikaImg from '../assets/images/projects/publika.jpeg'
 import realestateImg from '../assets/images/projects/realestate.jpeg'
 import smpImg from '../assets/images/projects/smp.jpeg'
 import trustpulseImg from '../assets/images/projects/trustpulse.jpeg'
+import shopscoutImg from '../assets/images/projects/shopscout.jpeg'
 
 const IMAGE_MAP = {
   'awscc-flurry': awsImg,
@@ -22,6 +23,7 @@ const IMAGE_MAP = {
   realestate: realestateImg,
   smp: smpImg,
   trustpulse: trustpulseImg,
+  shopscout: shopscoutImg,
 }
 
 const INTERVAL = 4500

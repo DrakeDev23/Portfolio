@@ -71,4 +71,13 @@ PROJECTS = [
         "color": "#06b6d4",
         "image": "/assets/images/projects/trustpulse.jpeg",
     },
+    {
+        "id": "shopscout",
+        "title": "ShopScout",
+        "subtitle": "E-Commerce",
+        "desc": "A real-time phishing detection tool that surfaces trust signals on landing pages, built with a React frontend and FastAPI backend.",
+        "tags": ["Reactjs", "TailwindCSS", "FastAPI"],
+        "color": "#06b6d4",
+        "image": "/assets/images/projects/shopscout.jpeg",
+    },
 ]

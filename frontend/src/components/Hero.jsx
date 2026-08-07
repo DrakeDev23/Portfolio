@@ -155,7 +155,7 @@ export default function Hero() {
             style={{ animationDelay: '0.55s' }}
           >
             {[
-              { icon: <Code2 size={14} />, label: '27+ technologies' },
+              { icon: <Code2 size={14} />, label: '29+ technologies' },
               { icon: <Shield size={14} />, label: '12 pentest tools' },
             ].map(({ icon, label }) => (
               <div
