@@ -3,12 +3,12 @@ import { Download, ArrowRight, Shield, Code2, ChevronDown } from 'lucide-react'
 import avatarImg from '../assets/images/avatar.jpeg'
 
 const ROLES = [
-  'aspiring Cybersecurity professional',
-  'Programmer',
-  'CTF Player',
   'Full-Stack Developer',
+  'Backend Developer',
+  'Aspiring Cybersecurity Professional',
+  'CTF Player',
   'Co-Founder'
-]
+];
 
 export default function Hero() {
   const [displayText, setDisplayText] = useState('')
