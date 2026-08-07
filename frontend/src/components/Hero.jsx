@@ -146,8 +146,7 @@ export default function Hero() {
             className="text-gray-400 leading-relaxed max-w-md text-sm sm:text-base animate-load-fade-up"
             style={{ animationDelay: '0.45s' }}
           >
-            BSIT student building secure, performant software. I bridge clean frontend
-            experiences with hardened backend systems and break things professionally in CTFs.
+            BSIT student and Full-Stack Developer specializing in backend development and cybersecurity. I build secure, scalable web applications with clean user experiences, robust backend systems, and a security first mindset developed through Capture The Flag (CTF).
           </p>
 
           <div
