@@ -25,6 +25,7 @@ const IMAGE_MAP = {
   smp: smpImg,
   trustpulse: trustpulseImg,
   shopscout: shopscoutImg,
+  airsiloy: airsiloy,
 }
 
 const INTERVAL = 4500
