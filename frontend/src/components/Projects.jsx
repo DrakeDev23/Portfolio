@@ -13,6 +13,7 @@ import realestateImg from '../assets/images/projects/realestate.jpeg'
 import smpImg from '../assets/images/projects/smp.jpeg'
 import trustpulseImg from '../assets/images/projects/trustpulse.jpeg'
 import shopscoutImg from '../assets/images/projects/shopscout.jpeg'
+import airsiloy from '../assets/images/projects/airsiloy.jpeg'
 
 const IMAGE_MAP = {
   'awscc-flurry': awsImg,
