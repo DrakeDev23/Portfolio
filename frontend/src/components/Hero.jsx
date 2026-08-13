@@ -4,6 +4,7 @@ import avatarImg from '../assets/images/avatar.jpeg'
 
 const ROLES = [
   'Full-Stack Developer',
+  'backend enthusiast',
   'Aspiring Cybersecurity Professional',
   'CTF Player',
   'Co-Founder'
