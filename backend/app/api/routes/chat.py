@@ -127,6 +127,7 @@ async def chat(request: Request, payload: ChatRequest, db: AsyncSession = Depend
         "messages": messages,
         "max_tokens": 256,
         "temperature": 0.6,
+        "model": settings.GROQ_MODEL,
     }
 
     headers = {
@@ -134,21 +135,12 @@ async def chat(request: Request, payload: ChatRequest, db: AsyncSession = Depend
         "Content-Type": "application/json",
     }
 
-    models_to_try = [settings.GROQ_MODEL]
-    if "llama-3.1-8b-instant" not in models_to_try:
-        models_to_try.append("llama-3.1-8b-instant")
-        
     resp = None
-    for model in models_to_try:
-        body["model"] = model
-        try:
-            async with httpx.AsyncClient(timeout=15) as client:
-                resp = await client.post(GROQ_URL, json=body, headers=headers)
-            if resp.status_code == 200:
-                break
-        except (httpx.TimeoutException, httpx.HTTPError) as e:
-            print(f"Exception calling Groq with {model}: {e}")
-            resp = None
+    try:
+        async with httpx.AsyncClient(timeout=15) as client:
+            resp = await client.post(GROQ_URL, json=body, headers=headers)
+    except (httpx.TimeoutException, httpx.HTTPError) as e:
+        print(f"Exception calling Groq with {settings.GROQ_MODEL}: {e}")
 
     if resp is None:
         return {"reply": "Sorry, my brain took too long to respond. Could you try asking again?"}
