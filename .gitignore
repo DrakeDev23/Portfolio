@@ -2,4 +2,5 @@
 dist/
 
 portfolio.sql
-*.sql
+*.sql__pycache__/
+*.py[cod]

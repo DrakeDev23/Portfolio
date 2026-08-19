@@ -29,7 +29,7 @@ const HOBBIES = [
 const FOCUS_BARS = [
   { label: 'Full-Stack Development', pct: 75 },
   { label: 'Penetration Testing', pct: 65 },
-  { label: 'Backend Development', pct: 70 },
+  { label: 'Backend Development', pct: 75 },
   { label: 'Frontend Development', pct: 80 },
 ]
 
