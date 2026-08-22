@@ -1,8 +1,6 @@
 from pydantic import field_validator
 from pydantic_settings import BaseSettings
 
-# Groq shut these down on 2026-08-16. Local .env already uses the replacement;
-# production often still has the old default/env value, which 404s at Groq.
 _DECOMMISSIONED_GROQ_MODELS = {
     "llama-3.3-70b-versatile": "openai/gpt-oss-20b",
     "llama-3.1-8b-instant": "openai/gpt-oss-20b",
