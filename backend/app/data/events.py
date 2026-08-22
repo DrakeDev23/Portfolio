@@ -72,12 +72,12 @@ EVENTS = [
         "desc": "Joined a cyber governance seminar covering modern threat landscapes, ethical hacking fundamentals, and best practices for securing systems and infrastructure.",
     },
     {
-        "id": "hackit",
-        "name": "Hack It 2026",
+        "id": "hackathon",
+        "name": "HackIT 2026",
         "location": "Cebu Institute of Technology - University, Cebu City",
         "date": "August 17, 2026",
         "role": "Participant",
         "achievement": None,
-        "desc": "Participated in a hackathon focused on using AI to solve real-world community problems",
+        "desc": "Joined a hackathon, a coding competition where participants collaborate to create innovative software solutions within a limited time frame.",
     }
 ]

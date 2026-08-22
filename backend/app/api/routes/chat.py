@@ -123,11 +123,14 @@ async def chat(request: Request, payload: ChatRequest, db: AsyncSession = Depend
 
     messages.append({"role": "user", "content": payload.message})
 
+    model = settings.GROQ_MODEL
+    key_configured = bool(settings.GROQ_API_KEY)
+
     body = {
         "messages": messages,
         "max_tokens": 256,
         "temperature": 0.6,
-        "model": settings.GROQ_MODEL,
+        "model": model,
     }
 
     headers = {
@@ -135,22 +138,43 @@ async def chat(request: Request, payload: ChatRequest, db: AsyncSession = Depend
         "Content-Type": "application/json",
     }
 
+    print(
+        f"Calling Groq: model={model} key_configured={key_configured}",
+        flush=True,
+    )
+
     resp = None
     try:
         async with httpx.AsyncClient(timeout=15) as client:
             resp = await client.post(GROQ_URL, json=body, headers=headers)
     except (httpx.TimeoutException, httpx.HTTPError) as e:
-        print(f"Exception calling Groq with {settings.GROQ_MODEL}: {e}")
+        print(
+            f"Exception calling Groq: model={model} key_configured={key_configured} "
+            f"type={type(e).__name__} error={e}",
+            flush=True,
+        )
 
     if resp is None:
         return {"reply": "Sorry, my brain took too long to respond. Could you try asking again?"}
 
     if resp.status_code == 429:
-        print(f"Groq rate limit: status=429 body={resp.text[:500]}")
+        print(
+            f"Groq rate limit: model={model} status=429 body={resp.text[:500]}",
+            flush=True,
+        )
         return {"reply": "I'm getting a little overwhelmed with questions right now! Please give me a minute to catch my breath."}
 
     if resp.status_code != 200:
-        print(f"Groq error: status={resp.status_code} body={resp.text[:500]}")
+        groq_code = None
+        try:
+            groq_code = resp.json().get("error", {}).get("code")
+        except Exception:
+            pass
+        print(
+            f"Groq error: model={model} status={resp.status_code} "
+            f"groq_code={groq_code} body={resp.text[:500]}",
+            flush=True,
+        )
         return {"reply": "Sorry, I couldn't reach my brain just now. Please try again in a bit."}
 
     data = resp.json()
