@@ -87,6 +87,6 @@ PROJECTS = [
         "desc": "An IoT-based air quality monitoring system that detects and analyzes environmental air conditions in real time, providing alerts and actionable insights when air quality reaches unhealthy levels.",
         "tags": ["Typescript", "TailwindCSS", "FastAPI", "PostgreSQL", "Clerk", "Docker", "IoT"],
         "color": "#06b6d4",
-        "image": "/assets/images/projects/airsiloy.jpeg",
+        "image": "/assets/images/projects/airsiloy.png",
     },
 ]
