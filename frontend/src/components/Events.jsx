@@ -13,11 +13,7 @@ const IMAGE_MAP = {
   networksec: "/assets/images/events/networksec.jpeg",
   webdev: "/assets/images/events/webdev.jpeg",
   devcon: "/assets/images/events/devcon.jpeg",
-<<<<<<< HEAD
   hackathon: "/assets/images/events/hackit.jpeg",
-=======
-  hackathon: "/assets/images/events/hackathon.jpeg",
->>>>>>> origin/main
 }
 
 const ACCENT = '#7A33FF'
