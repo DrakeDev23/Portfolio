@@ -88,5 +88,14 @@ EVENTS = [
         "role": "Participant",
         "achievement": None,
         "desc": "Participated in Beyond the Firewall, a hands on cybersecurity event where participants gained practical experience through security related activities and challenges.",
+    },
+    {
+        "id": "aws",
+        "name": "AWS Community Day 2026",
+        "location": "University of the Philippines - Cebu",
+        "date": "August 30, 2026",
+        "role": "Attendee",
+        "achievement": None,
+        "desc": "Attended AWS Community Day 2026, a conference where industry professionals shared their experiences and insights on cloud technologies, with opportunities to connect and network with students from different schools."
     }
 ]
