@@ -15,6 +15,7 @@ const IMAGE_MAP = {
   devcon: "/assets/images/events/devcon.jpeg",
   hackathon: "/assets/images/events/hackit.jpeg",
   firewall: "/assets/images/events/firewall.jpeg",
+  aws: "/assets/images/events/aws.jpeg",
 }
 
 const ACCENT = '#7A33FF'
