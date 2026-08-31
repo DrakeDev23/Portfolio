@@ -79,5 +79,14 @@ EVENTS = [
         "role": "Participant",
         "achievement": None,
         "desc": "Joined a hackathon, a coding competition where participants collaborate to create innovative software solutions within a limited time frame.",
+    },
+    {
+        "id": "firewall",
+        "name": "Beyond the Firewall",
+        "location": "RivanIT Cebu",
+        "date": "August 22, 2026",
+        "role": "Participant",
+        "achievement": None,
+        "desc": "Participated in Beyond the Firewall, a hands on cybersecurity event where participants gained practical experience through security related activities and challenges.",
     }
 ]
